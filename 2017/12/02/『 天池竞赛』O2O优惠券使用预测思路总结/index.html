@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>『 天池竞赛』O2O优惠券使用预测思路总结 | 1000 words a Day</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="『 天池竞赛』O2O优惠券使用预测思路总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『 天池竞赛』O2O优惠券使用预测思路总结">
+<meta property="og:url" content="https://insanelife.github.io/2017/12/02/『 天池竞赛』O2O优惠券使用预测思路总结/index.html">
+<meta property="og:site_name" content="1000 words a Day">
+<meta property="og:description" content="『 天池竞赛』O2O优惠券使用预测思路总结">
+<meta property="og:image" content="http://img.blog.csdn.net/20170103160645251?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-03-20T05:29:45.428Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="『 天池竞赛』O2O优惠券使用预测思路总结">
+<meta name="twitter:description" content="『 天池竞赛』O2O优惠券使用预测思路总结">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170103160645251?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+  
+    <link rel="alternative" href="/atom.xml" title="1000 words a Day" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">cnFeat</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">Writing 1000 Words a Day Changes My Life</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/Home">博客首页</a></li>
+                        
+                            <li><a href="/works">作品展示</a></li>
+                        
+                            <li><a href="/about">留言打卡</a></li>
+                        
+                            <li><a href="/FrontEndGuide">前端导航</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/luuman" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="#" title="weibo">weibo</a>
+                            
+                                <a class="fl google" target="_blank" href="#" title="google">google</a>
+                            
+                                <a class="fl twitter" target="_blank" href="#" title="twitter">twitter</a>
+                            
+                                <a class="fl linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/O2O/" style="font-size: 10px;">O2O</a> <a href="/tags/天池/" style="font-size: 10px;">天池</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://luuman.github.io/">name</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">纯海迷、爱运动、爱交友、爱旅行、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">cnFeat</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">cnFeat</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">Writing 1000 Words a Day Changes My Life</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/Home">博客首页</a></li>
+                
+                    <li><a href="/works">作品展示</a></li>
+                
+                    <li><a href="/about">留言打卡</a></li>
+                
+                    <li><a href="/FrontEndGuide">前端导航</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/luuman" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+                    
+                        <a class="google" target="_blank" href="#" title="google">google</a>
+                    
+                        <a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+                    
+                        <a class="linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-『 天池竞赛』O2O优惠券使用预测思路总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/12/02/『 天池竞赛』O2O优惠券使用预测思路总结/" class="article-date">
+      <time datetime="2017-12-02T07:30:16.000Z" itemprop="datePublished">2017-12-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      『 天池竞赛』O2O优惠券使用预测思路总结
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/天池竞赛/">天池竞赛</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/O2O/">O2O</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/天池/">天池</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>赛题地址：<a href="https://tianchi.shuju.aliyun.com/competition/introduction.htm?spm=5176.100065.200879.2.6r6s4g&amp;raceId=231587" title="O2O优惠券使用预测赛题地址" target="_blank" rel="external">https://tianchi.shuju.aliyun.com/competition/introduction.htm?spm=5176.100065.200879.2.6r6s4g&amp;raceId=231587</a></p>
+<p><a href="https://pan.baidu.com/s/1c1NkUn2" target="_blank" rel="external">第一赛季数据</a></p>
+<hr>
+<p><strong>目录</strong></p>
+<p>[TOC]</p>
+<hr>
+<p>正式开始做是从十月底开始的，<a href="https://github.com/InsaneLife" target="_blank" rel="external">我</a>之前参加了新手赛，而这一次正式赛可以说是真正认真做的一次，中间和队友一起学习了很多，也有小小的收获，不管这次成绩如何，以后还有机会。</p>
+<p><img src="http://img.blog.csdn.net/20170103160645251?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="我的成绩"></p>
+<hr>
+<h1 id="数据与评价方式"><a href="#数据与评价方式" class="headerlink" title="数据与评价方式"></a><strong>数据与评价方式</strong></h1><p>赛题提供用户在2016年1月1日至2016年6月30日之间真实线上线下消费行为，预测用户在2016年7月领取优惠券后15天以内的使用情况。 使用优惠券核销预测的平均AUC（ROC曲线下面积）作为评价标准。 即对每个优惠券coupon_id单独计算核销预测的AUC值，再对所有优惠券的AUC值求平均作为最终的评价标准。</p>
+<hr>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a><strong>解决方案</strong></h1><p>提供数据的区间是2016-01-01~2016-06-30，预测七月份用户领券使用情况，即用或者不用，转化为<strong>二分类问题</strong>，然后通过分类算法预测结果。首先就是特征工程，其中涉及对数据集合的划分，包括提取特征的区间和训练数据区间。接着就是从特征区间中提取特征，包括用户特征、商户特征、优惠券特征、用户商户组合特征、用户优惠券组合特征。后期在测试区间提取了当天的前后7/3/1天的领券信息（这里面后七天的特征其实是不能应用于工业应用的，因为实际预测中你无法知道后7/3/1天的领券信息），提升较大。最后使用GBDT、RandomForest、LR进行基于rank的分类模型融合</p>
+<hr>
+<h1 id="数据划分"><a href="#数据划分" class="headerlink" title="数据划分"></a><strong>数据划分</strong></h1><p>最初没有使用数据划分，导致特征中产生数据泄露，以至于在训练数据上效果很好，线下测试也还不错，在线上表现确差强人意，后来划分了之后有明显提升。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">集合</th>
+<th style="text-align:left">预测区间</th>
+<th style="text-align:left">特征区间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">预测集</td>
+<td style="text-align:left">领券:20160701~20160731</td>
+<td style="text-align:left">领券&amp;消费:20160101~20160630</td>
+</tr>
+<tr>
+<td style="text-align:left">训练集</td>
+<td style="text-align:left">领券:20160515~20160615<br>消费:20160515~20160630</td>
+<td style="text-align:left">领券:20160101~20160501<br>消费:20160101~20160515</td>
+</tr>
+</tbody>
+</table>
+<p>并没有划分多个训练集，这一点是要改进之处。</p>
+<hr>
+<h1 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a><strong>特征工程</strong></h1><p>主要有五大特征类：用户特征、商户特征、优惠券特征、用户商户组合特征、用户优惠券组合特征，赛题包括online和offline的数据，由于里面只有部分用户重合，商户优惠券等并未有重合，个人臆测线上应该是淘宝天猫的购买消费数据，有一定关联，但关系微弱，因此只向其中提取了用户特征。而offline数据集就提取了所有五个特征类。一下是各部分特征：  </p>
+<ul>
+<li><p>用户特征：u</p>
+<ul>
+<li>线下领取优惠券但没有使用的次数 u1</li>
+<li>线下普通消费次数 u2</li>
+<li>线下使用优惠券消费的次数 u3</li>
+<li>线下平均正常消费间隔  u4</li>
+<li>线下平均优惠券消费间隔  u5</li>
+<li>u3/u1 使用优惠券次数与没使用优惠券次数比值  u6</li>
+<li>u3/(u2+u3) 表示用户使用优惠券消费占比  u7</li>
+<li>u4/15  代表15除以用户普通消费间隔，可以看成用户15天内平均会普通消费几次，值越小代表用户在15天内普通消费概率越大 u8</li>
+<li>u5/15  代表15除以用户优惠券消费间隔，可以看成用户15天内平均会普通消费几次，值越大代表用户    在15天内普通消费概率越大 u9</li>
+<li>领取优惠券到使用优惠券的平均间隔时间 u10</li>
+<li>u10/15  表示在15天内使用掉优惠券的值大小，值越小越有可能，值为0表示可能性最大 u11</li>
+<li>领取优惠券到使用优惠券间隔小于15天的次数  u12</li>
+<li>u12/u3  表示用户15天使用掉优惠券的次数除以使用优惠券的次数，表示在15天使用掉优惠券的可能，值越大越好。 u13</li>
+<li>u12/u1  F014 表示用户15天使用掉优惠券的次数除以领取优惠券未消费的次数，表示在15天使用掉优惠券的可能，值越大越好。 u14</li>
+<li>u1+u3 领取优惠券的总次数 u15</li>
+<li>u12/u15 F016 表示用户15天使用掉优惠券的次数除以领取优惠券的总次数，表示在15天使用掉优惠券的可能，值越大越好。 u16</li>
+<li>u1+u2 一共消费多少次 u17</li>
+<li>最近一次消费到当前领券的时间间隔 u18</li>
+<li>最近一次优惠券消费到当前领券的时间间隔 u19</li>
+<li>用户当天领取的优惠券数目 u20</li>
+<li>用户前第i天领取的优惠券数目 u20si</li>
+<li>用户后第i天领取的优惠券数目 u20ai</li>
+<li>用户前7天领取的优惠券数目 u21</li>
+<li>用户前3天领取的优惠券数目 u22</li>
+<li>u22/u21    u23</li>
+<li>u20/u22    u24</li>
+<li>用户后7天领取的优惠券数目 u25</li>
+<li>用户后3天领取的优惠券数目 u26</li>
+<li>u26/u25 u27</li>
+<li>u20/u26 u28</li>
+<li>用户训练、预测时间领取的优惠券数目 u29</li>
+<li>用户当天领取的不同优惠券数目 u30</li>
+<li>用户前第i天领取的不同优惠券数目 u30si</li>
+<li>用户后第i天领取的不同优惠券数目 u30ai</li>
+<li>用户训练、预测时间领取的不同优惠券数目 u31</li>
+<li>按照7/4/2分解训练、预测时间，提取此段窗口时间的特征</li>
+<li>用户7/4/2天领取的优惠券数目 u32_i</li>
+<li>用户7/4/2天所领取的优惠券优惠率r1/r2/r3/r4排名 u_ri_ranki</li>
+<li>用户7/4/2天所领取的优惠券优惠率r1/r2/r3/r4排名 u_ri_dense    _ranki</li>
+<li>u32_4/u32_7    u33</li>
+<li>u32_2/u32_4    u34</li>
+<li>u32_2/u32_7     u35</li>
+<li><p>u20/u32_2    u36</p>
+</li>
+<li><p>线上领取优惠券未使用的次数 action=2 uo1</p>
+</li>
+<li>线上特价消费次数 action=1 and cid=0 and drate=”fixed”  uo2</li>
+<li>线上使用优惠券消费的次数    uo3</li>
+<li>线上普通消费次数 action=1 and cid=0 and drate=”null”     uo4</li>
+<li>线上领取优惠券的次数     uo1+uo3        uo5</li>
+<li>uo3/uo5 线上使用优惠券次数除以线上领取优惠券次数，正比    uo6</li>
+<li>uo3/uo4 线上使用优惠券次数除以线上普通消费次数，正比     uo7</li>
+<li><p>uo2/uo4线上特价消费次数除以线上普通消费次数     uo8</p>
+</li>
+<li><p><strong>加入训练预测时间前一个月的窗口特征</strong></p>
+</li>
+<li>线下领取优惠券但没有使用的次数 uw1</li>
+<li>线下普通消费次数 uw2</li>
+<li>线下使用优惠券消费的次数 uw3</li>
+<li>线下平均正常消费间隔  uw4</li>
+<li>线下平均优惠券消费间隔  uw5</li>
+<li>uw3/uw1 使用优惠券次数与没使用优惠券次数比值  uw6</li>
+<li>uw3/(uw2+uw3) 表示用户使用优惠券消费占比  uw7</li>
+<li>uw4/15  代表15除以用户普通消费间隔，可以看成用户15天内平均会普通消费几次，值越小代表用户在15天内普通消费概率越大 uw8</li>
+<li>uw5/15  代表15除以用户优惠券消费间隔，可以看成用户15天内平均会普通消费几次，值越大代表用户在15天内普通消费概率越大 uw9</li>
+<li>领取优惠券到使用优惠券的平均间隔时间 uw10</li>
+<li>uw10/15  表示在15天内使用掉优惠券的值大小，值越小越有可能，值为0表示可能性最大 uw11</li>
+<li>领取优惠券到使用优惠券间隔小于15天的次数  uw12</li>
+<li>uw12/uw3  表示用户15天使用掉优惠券的次数除以使用优惠券的次数，表示在15天使用掉优惠券的可能，值越大越好。 uw13</li>
+<li>uw12/uw1  F014 表示用户15天使用掉优惠券的次数除以领取优惠券未消费的次数，表示在15天使用掉优惠券的可能，值越大越好。 uw14</li>
+<li>uw1+uw3 领取优惠券的总次数 uw15</li>
+<li>uw12/uw15 F016 表示用户15天使用掉优惠券的次数除以领取优惠券的总次数，表示在15天使用掉优惠券的可能，值越大越好。 uw16</li>
+<li>F01+F02 一共消费多少次 uw17</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>商户特征：m<ul>
+<li>商户一共的消费笔数：m0</li>
+<li>商户优惠券消费笔数：m1</li>
+<li>商户正常的消费笔数：m2</li>
+<li>没有被使用的优惠券: m3</li>
+<li>商户发放优惠券数目：m3+m1  m4</li>
+<li>商户优惠券使用率：m1/m4  m5</li>
+<li>商户在训练、预测时间发行的优惠券数目 m6</li>
+<li>商户当天发行的优惠券数目 m7</li>
+<li>商户在训练、预测时间有多少人在此店领券 m8</li>
+<li>商户在当天有多少人在此店领券 m9</li>
+<li>按照7/4/2分解训练、预测时间，提取此段窗口时间的特征</li>
+<li>7/4/2天此商店优惠券发放数目 m10_i</li>
+<li>m9 / m10_7     m11</li>
+<li>m9 / m10_4     m12</li>
+<li>m9 / m10_2     m13</li>
+<li>m10_2 / m10_4     m14</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>优惠券特征:c<ul>
+<li>折扣类的优惠券折扣率 r1</li>
+<li>满减类优惠券满减金额 r2</li>
+<li>满减类优惠券减的金额 r3</li>
+<li>满减类优惠券优惠率  (r2-r3)/r2  r4</li>
+<li>c1+c2 此优惠券一共发行多少张 c0</li>
+<li>此优惠券一共被使用多少张 c1</li>
+<li>没有使用的数目 c2</li>
+<li>c1/c0 优惠券使用率 c3</li>
+<li>优惠力度 c5</li>
+<li>优惠力度在当天所领取优惠券里面排名 c5_rank</li>
+<li>优惠力度在当天所领取优惠券里面排名 c5_denserank</li>
+<li>优惠力度在当天同一店家所领取优惠券里面排名 c5_rankm</li>
+<li><del>优惠力度在当天所领取优惠券里面百分比排名 c5_rankp</del></li>
+<li><del>优惠力度在当天同一店家所领取优惠券里面百分比排名 c5_rankmp</del></li>
+<li>此优惠券在训练、预测时间发行了多少张 c6</li>
+<li>此优惠券在当天发行了多少张 c7</li>
+<li><del>领券当天周几 c8</del></li>
+<li><del>领券当天是否周末 c9</del>        c8,c9去掉效果更好了。。。。</li>
+<li>此优惠券在当天被多少人领过 c10</li>
+<li>此优惠券在训练、预测时间被多少个人领过 c11 </li>
+<li>此优惠券最后一次领券时间到此领券时间的间隔 c12</li>
+<li>此优惠券最后一次消费时间到此领券时间的间隔 c13</li>
+<li>按照7/4/2分解训练、预测时间，提取此段窗口时间的特征</li>
+<li>7/4/2天此优惠券发放数目 c14_i</li>
+<li>c10 / c14_7 AS     c15</li>
+<li>c10 / c14_4 AS     c16</li>
+<li>c14_2 / c14_4 AS     c17</li>
+<li>c10 / c14_2 AS     </li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>用户和商户组合特征:um<ul>
+<li>用户在商店总共消费过几次 um0</li>
+<li>用户在商店使用优惠券几次 um1</li>
+<li>用户在商店领取优惠券未消费次数 um2</li>
+<li>用户在商店普通消费次数 um3</li>
+<li>um1/(um1+um2) 用户在此商户优惠券使用率 um4</li>
+<li>um0/(u2+u3) 值大表示用户比较常去的商户 um5</li>
+<li>um1/u3 值大表示用户比较喜欢在那个商户使用优惠券 um6</li>
+<li>用户在训练、预测时间在此商店领取的优惠券数目 um7</li>
+<li>用户当天在此商店领取的优惠券数目 um8</li>
+<li>按照7/4/2分解训练、预测时间，提取此段窗口时间的特征</li>
+<li>7/4/2天此用户在此商店领取的优惠券发放数目 um9_i</li>
+<li>um8 / um9_7         um10</li>
+<li>um8 / um9_4        um11</li>
+<li>um8 / um9_2        um12</li>
+<li>um9_2 / um9_4     um13</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>用户和优惠券组合特征:uc</p>
+<ul>
+<li>用户领取的优惠券数目 uc0</li>
+<li>用户领取未消费的优惠券数目 uc1</li>
+<li>用户消费了此优惠券的数目 uc2</li>
+<li>uc02/uc0  uc3</li>
+<li>用户在此期间领取了多少张此优惠券 uc4        partiton by uid, cid</li>
+<li>用户在当天领取了多少张此优惠券 uc5</li>
+<li>领取优惠券时间-最后一次使用优惠券时间 uc6</li>
+<li><p>uc6/ u5 uc7 正比</p>
+</li>
+<li><p>用户前第i天领取的此优惠券数目 uc5si</p>
+</li>
+<li>用户后第i天领取的此优惠券数目 uc5ai</li>
+<li>用户前7天领取的此优惠券数目 uc8</li>
+<li>用户前3天领取的此优惠券数目 uc9</li>
+<li>uc9/uc8    uc10(若u21为0，则为1)</li>
+<li>uc4/uc9    uc11</li>
+<li>用户后7天领取的此优惠券数目 uc12</li>
+<li>用户后3天领取的此优惠券数目 uc13</li>
+<li>uc13/uc12 uc14</li>
+<li>uc4/uc13 uc15</li>
+<li>按照7/4/2分解训练、预测时间，提取此段窗口时间的特征</li>
+<li>7/4/2天此用户在此商店领取的优惠券发放数目 uc16_i</li>
+<li>用户前后2/4/7领取的优惠券优惠率排名  uc17_i </li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="算法及模型融合"><a href="#算法及模型融合" class="headerlink" title="算法及模型融合"></a><strong>算法及模型融合</strong></h1><p>最初使用RF、GBDT两种模型，GBDT效果优于RF，后期使用了多个GBDT和XGBoost，分别使用不同的参数、不同的正负样本比例以rank的方式进行多模型的融合，效果有微小提升，但是由于计算量的限制没有进一步展开。</p>
+<h2 id="模型融合"><a href="#模型融合" class="headerlink" title="模型融合"></a><strong>模型融合</strong></h2><p>由于评估指标是计算每个coupon_id核销预测的AUC值，然后所有优惠券的AUC值平均作为最终的评估指标，而rank融合方式对AUC之类的评估指标特别有效，所以采用此方法，公式为：</p>
+<center>$\sum\limits_{i=1}^{n}\frac{Weight_i}{Rank_i} $</center>
+
+<p>其中$n$表示模型的个数， $Weight_i$表示该模型权重，所有权重相同表示平均融合。$Rank_i$表示样本在第i个模型中的升序排名。它可以较快的利用排名融合多个模型之间的差异，而不需要加权融合概率。</p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a><strong>应用</strong></h2><p>基于参数，样本(采样率)，特征获得多个模型，得到每个模型的概率值输出，然后以coupon_id分组，把概率转换为降序排名，这样就获得了每个模型的$Rank_i$，然后这里我们使用的是平均融合，$Weight_i=1/n$，这样就获得了最终的一个值作为输出。</p>
+<hr>
+<h1 id="线下评估"><a href="#线下评估" class="headerlink" title="线下评估"></a><strong>线下评估</strong></h1><p>虽然这次比赛每天有四次评测机会，但是构建线下评估在早期成绩比较差的时候用处很大，早期添加特征之后线下评估基本和线上的趋势保持一致（例如在添加了Label区间的领券特征之后，线下提升十多个百分点，线上也是一致），对于新特征衡量还是有参照性的。后期差距在0.1%级别的时候，就没有参照性了。</p>
+<p>线下评估在训练集中采样1/3 or 1/4 or 1/5做线下评估集合，剩下的做为训练集训练模型，并将评估集合中全0或者全1的优惠券ID去掉，然后使用训练的模型对评估集合预测，将预测结果和实际标签作异或取反（相同为1，不同为0），然后算出每个优惠券ID的AUC，最后将每个ID的优惠券AUC取均值就得到最终的AUC。</p>
+<hr>
+<h1 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a><strong>回顾</strong></h1><p>这一次比赛学习了很多，包括分布式平台ODPS和机器学习平台实现数据清洗，特征提取，特征选择，分类建模、调参及模型融合等，学习摸索了一套方法，使自己建立了信心，明白还有很多需要学习的地方，之前一直对于算法都是当做一个黑匣子，只会熟悉输入输出直接调用，要深入了解算法，才能突破目前的瓶颈有所提高。<br>同时我觉得大家一起探讨交流也很重要，一个人做着做着就容易走偏，纯属个人看法。</p>
+<p>CSDN博客链接：<a href="http://blog.csdn.net/shine19930820/article/details/53995369" target="_blank" rel="external">http://blog.csdn.net/shine19930820/article/details/53995369</a></p>
+<p>授人以鱼不如授人以渔：<br><strong>参考 第一名队伍：【诗人都藏在水底】：<a href="https://github.com/wepe/O2O-Coupon-Usage-Forecast" target="_blank" rel="external">GitHub地址</a></strong></p>
+<p><strong>python sklearn数据预处理：</strong><a href="http://blog.csdn.net/shine19930820/article/details/50915361" target="_blank" rel="external">http://blog.csdn.net/shine19930820/article/details/50915361</a><br><strong>广义线性模型–Generalized Linear Models：</strong><a href="http://blog.csdn.net/shine19930820/article/details/50997645" target="_blank" rel="external">http://blog.csdn.net/shine19930820/article/details/50997645</a><br><strong>交叉验证的Java weka实现，并保存和重载模型：</strong><a href="http://blog.csdn.net/shine19930820/article/details/50921109" target="_blank" rel="external">http://blog.csdn.net/shine19930820/article/details/50921109</a><br><strong>机器学习知识图谱：</strong><a href="http://lib.csdn.net/base/machinelearning/structure" target="_blank" rel="external">http://lib.csdn.net/base/machinelearning/structure</a></p>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang" title="打赏，支持一下">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()" title="关闭">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/12/02/『 天池竞赛』O2O优惠券使用预测思路总结/">『 天池竞赛』O2O优惠券使用预测思路总结</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 cnFeat 的个人博客">cnFeat</a></p>
+        <p><span>发布时间:</span>2017年12月02日 - 15时30分</p>
+        <p><span>最后更新:</span>2017年03月20日 - 13时29分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/12/02/『 天池竞赛』O2O优惠券使用预测思路总结/" title="『 天池竞赛』O2O优惠券使用预测思路总结">https://insanelife.github.io/2017/12/02/『 天池竞赛』O2O优惠券使用预测思路总结/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://insanelife.github.io/2017/12/02/『 天池竞赛』O2O优惠券使用预测思路总结/　　作者: cnFeat" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数据与评价方式"><span class="toc-number">1.</span> <span class="toc-text">数据与评价方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据划分"><span class="toc-number">3.</span> <span class="toc-text">数据划分</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#特征工程"><span class="toc-number">4.</span> <span class="toc-text">特征工程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#算法及模型融合"><span class="toc-number">5.</span> <span class="toc-text">算法及模型融合</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#模型融合"><span class="toc-number">5.1.</span> <span class="toc-text">模型融合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用"><span class="toc-number">5.2.</span> <span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#线下评估"><span class="toc-number">6.</span> <span class="toc-text">线下评估</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#回顾"><span class="toc-number">7.</span> <span class="toc-text">回顾</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2017/12/02/『 天池竞赛』O2O优惠券使用预测思路总结/" data-title="『 天池竞赛』O2O优惠券使用预测思路总结" data-url="https://insanelife.github.io/2017/12/02/『 天池竞赛』O2O优惠券使用预测思路总结/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"null"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/12/02/『 天池竞赛』O2O优惠券使用预测思路总结/">『 天池竞赛』O2O优惠券使用预测思路总结</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2017 cnFeat
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >海贼到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
