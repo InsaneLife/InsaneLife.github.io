@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  <title>『数据挖掘十大算法 』笔记一：决策树 | AaronChou page</title>
+  <title>不平衡学习的方法 Learning from Imbalanced Data | AaronChou page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="数据挖掘十大算法 』笔记一：决策树">
+  <meta name="description" content="不平衡学习的方法 Learning from Imbalanced Data">
 <meta property="og:type" content="article">
-<meta property="og:title" content="『数据挖掘十大算法 』笔记一：决策树">
+<meta property="og:title" content="不平衡学习的方法 Learning from Imbalanced Data">
 <meta property="og:url" content="https://insanelife.github.io/2017/01/31/不平衡学习的方法 Learning from Imbalanced Data/index.html">
 <meta property="og:site_name" content="AaronChou page">
-<meta property="og:description" content="数据挖掘十大算法 』笔记一：决策树">
+<meta property="og:description" content="不平衡学习的方法 Learning from Imbalanced Data">
 <meta property="og:image" content="http://img.blog.csdn.net/20170106221646788?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170106223631471?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170106230518290?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
@@ -18,10 +18,10 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20170106230232930?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170106230450040?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170106232102016?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-03-21T02:04:35.972Z">
+<meta property="og:updated_time" content="2017-03-21T02:13:06.587Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="『数据挖掘十大算法 』笔记一：决策树">
-<meta name="twitter:description" content="数据挖掘十大算法 』笔记一：决策树">
+<meta name="twitter:title" content="不平衡学习的方法 Learning from Imbalanced Data">
+<meta name="twitter:description" content="不平衡学习的方法 Learning from Imbalanced Data">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20170106221646788?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
   
     <link rel="alternative" href="/atom.xml" title="AaronChou page" type="application/atom+xml">
@@ -158,7 +158,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/O2O/" style="font-size: 10px;">O2O</a> <a href="/tags/决策树/" style="font-size: 13.33px;">决策树</a> <a href="/tags/天池/" style="font-size: 10px;">天池</a> <a href="/tags/支持向量机/" style="font-size: 10px;">支持向量机</a> <a href="/tags/数据挖掘/" style="font-size: 16.67px;">数据挖掘</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a>
+                        <a href="/tags/O2O/" style="font-size: 10px;">O2O</a> <a href="/tags/不平衡学习/" style="font-size: 10px;">不平衡学习</a> <a href="/tags/决策树/" style="font-size: 10px;">决策树</a> <a href="/tags/天池/" style="font-size: 10px;">天池</a> <a href="/tags/支持向量机/" style="font-size: 10px;">支持向量机</a> <a href="/tags/数据挖掘/" style="font-size: 15px;">数据挖掘</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a>
                     </div>
                 </section>
                 
@@ -257,7 +257,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      『数据挖掘十大算法 』笔记一：决策树
+      不平衡学习的方法 Learning from Imbalanced Data
     </h1>
   
 
@@ -272,7 +272,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/决策树/">决策树</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据挖掘/">数据挖掘</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/不平衡学习/">不平衡学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据挖掘/">数据挖掘</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -389,12 +389,12 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/01/31/不平衡学习的方法 Learning from Imbalanced Data/">『数据挖掘十大算法 』笔记一：决策树</a></p>
+        <p><span>本文标题:</span><a href="/2017/01/31/不平衡学习的方法 Learning from Imbalanced Data/">不平衡学习的方法 Learning from Imbalanced Data</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 AaronChou 的个人博客">AaronChou</a></p>
         <p><span>发布时间:</span>2017年01月31日 - 15时30分</p>
-        <p><span>最后更新:</span>2017年03月21日 - 10时04分</p>
+        <p><span>最后更新:</span>2017年03月21日 - 10时13分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/01/31/不平衡学习的方法 Learning from Imbalanced Data/" title="『数据挖掘十大算法 』笔记一：决策树">https://insanelife.github.io/2017/01/31/不平衡学习的方法 Learning from Imbalanced Data/</a>
+            <span>原始链接:</span><a class="post-url" href="/2017/01/31/不平衡学习的方法 Learning from Imbalanced Data/" title="不平衡学习的方法 Learning from Imbalanced Data">https://insanelife.github.io/2017/01/31/不平衡学习的方法 Learning from Imbalanced Data/</a>
             <span class="copy-path" data-clipboard-text="原文: https://insanelife.github.io/2017/01/31/不平衡学习的方法 Learning from Imbalanced Data/　　作者: AaronChou" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
@@ -478,7 +478,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2017/01/31/不平衡学习的方法 Learning from Imbalanced Data/" data-title="『数据挖掘十大算法 』笔记一：决策树" data-url="https://insanelife.github.io/2017/01/31/不平衡学习的方法 Learning from Imbalanced Data/"></div>
+    <div class="ds-thread" data-thread-key="2017/01/31/不平衡学习的方法 Learning from Imbalanced Data/" data-title="不平衡学习的方法 Learning from Imbalanced Data" data-url="https://insanelife.github.io/2017/01/31/不平衡学习的方法 Learning from Imbalanced Data/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -512,7 +512,7 @@
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/01/31/『数据挖掘十大算法 』笔记一：决策树/">『数据挖掘十大算法 』笔记一：决策树</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/31/『数据挖掘十大算法 』笔记二：SVM-支持向量机/">『数据挖掘十大算法 』笔记二：SVM-支持向量机</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/31/不平衡学习的方法 Learning from Imbalanced Data/">『数据挖掘十大算法 』笔记一：决策树</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/『 天池竞赛』O2O优惠券使用预测思路总结/">『 天池竞赛』O2O优惠券使用预测思路总结</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/01/31/『数据挖掘十大算法 』笔记一：决策树/">『数据挖掘十大算法 』笔记一：决策树</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/31/『数据挖掘十大算法 』笔记二：SVM-支持向量机/">『数据挖掘十大算法 』笔记二：SVM-支持向量机</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/31/不平衡学习的方法 Learning from Imbalanced Data/">不平衡学习的方法 Learning from Imbalanced Data</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/『 天池竞赛』O2O优惠券使用预测思路总结/">『 天池竞赛』O2O优惠券使用预测思路总结</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
