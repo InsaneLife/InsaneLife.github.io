@@ -11,8 +11,6 @@
 <meta property="og:url" content="https://insanelife.github.io/2016/03/02/不平衡学习的方法 Learning from Imbalanced Data/index.html">
 <meta property="og:site_name" content="AaronChou page">
 <meta property="og:description" content="不平衡学习的方法 Learning from Imbalanced Data">
-<meta property="og:image" content="http://img.blog.csdn.net/20170106221646788?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170106223631471?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170106230518290?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170106225945454?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170106230232930?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
@@ -22,7 +20,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="不平衡学习的方法 Learning from Imbalanced Data">
 <meta name="twitter:description" content="不平衡学习的方法 Learning from Imbalanced Data">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20170106221646788?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170106230518290?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
   
     <link rel="alternative" href="/atom.xml" title="AaronChou page" type="application/atom+xml">
   
@@ -301,17 +299,20 @@
 <ol>
 <li>对于少数类中每一个样本$x$，以欧氏距离为标准计算它到少数类样本集$S_{min}$中所有样本的距离，得到其k近邻。 </li>
 <li>根据样本不平衡比例设置一个采样比例以确定采样倍率$N$，对于每一个少数类样本$x$，从其k近邻中随机选择若干个样本，假设选择的近邻为$\hat{x}$。 </li>
-<li>对于每一个随机选出的近邻$\hat{x}$，分别与原样本按照如下的公式构建新的样本。<br>$$x_{new} = x + rand(0,1)*(\hat{x}-x)$$<br><center><img src="http://img.blog.csdn.net/20170106221646788?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="SMOTE算法"><br>图2 SMOTE算法</center><br>SMOTE算法摈弃了随机采样复制样本的做法，使得算法的性能有所提升，但由于每个少数样本都会产生新样本，也会产生样本重叠的问题，下面介绍其改进算法：</li>
+<li>对于每一个随机选出的近邻$\hat{x}$，分别与原样本按照如下的公式构建新的样本。 <script type="math/tex; mode=display">x_{new} = x + rand(0,1)*(\hat{x}-x)</script><center>![SMOTE算法](http://img.blog.csdn.net/20170106221646788?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+图2 SMOTE算法</center><br>SMOTE算法摈弃了随机采样复制样本的做法，使得算法的性能有所提升，但由于每个少数样本都会产生新样本，也会产生样本重叠的问题，下面介绍其改进算法：</li>
 </ol>
 <h2 id="Borderline-SMOTE算法"><a href="#Borderline-SMOTE算法" class="headerlink" title="Borderline-SMOTE算法"></a>Borderline-SMOTE算法</h2><hr>
-<p>在Borderline-SMOTE中，若少数类样本的每个样本$x_i$求k近邻，记作$S_i-knn$，且$S<em>i-knn$属于整个样本集合$S$而不再是少数类样本，若满足<br>$$\frac{k}{2}&lt;|s</em>{i-knn}\cap s_{max}|&lt;k$$<br>即k近邻中超过一半是多数样本。<br>则将样本$x_i$加入DANGER集合，显然DANGER集合代表了接近分类边界的样本，将DANGER当作SMOTE种子样本的输入生成新样本。特别地，当上述条件取右边界，即k近邻中全部样本都是多数类时此样本不会被选择为种样本生成新样本，此情况下的样本为噪音。</p>
-<center><img src="http://img.blog.csdn.net/20170106223631471?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="图3 Borderline-SMOTE算法"><br>图3 Borderline-SMOTE算法</center>
+<p>在Borderline-SMOTE中，若少数类样本的每个样本$x_i$求k近邻，记作$S_i-knn$，且$S_i-knn$属于整个样本集合$S$而不再是少数类样本，若满足</p>
+<script type="math/tex; mode=display">\frac{k}{2}<|s_{i-knn}\cap s_{max}|<k</script><p>即k近邻中超过一半是多数样本。<br>则将样本$x_i$加入DANGER集合，显然DANGER集合代表了接近分类边界的样本，将DANGER当作SMOTE种子样本的输入生成新样本。特别地，当上述条件取右边界，即k近邻中全部样本都是多数类时此样本不会被选择为种样本生成新样本，此情况下的样本为噪音。</p>
+<center>![图3 Borderline-SMOTE算法](http://img.blog.csdn.net/20170106223631471?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+图3 Borderline-SMOTE算法</center>
 
 
 
 <h2 id="Informed-Undersampling"><a href="#Informed-Undersampling" class="headerlink" title="Informed Undersampling"></a>Informed Undersampling</h2><p>前面讲了关于过采样的的算法，那么下面就是欠采样算法informed undersampling，informed undersampling采样技术主要有两种方法分别是EasyEnsemble算法和BalanceCascade算法。<br>    EasyEnsemble算法如下图4所示，此算法类似于随机森林的Bagging方法，它把数据划分为两部分，分别是多数类样本和少数类样 本，对于多数类样本$S_maj$，通过<strong>n次有放回抽样</strong>生成n份子集，少数类样本分别和这n份样本合并训练一个模型，这样可以得到n个模型，最终的模型是 这<strong>n个模型预测结果的平均值</strong>。</p>
 <p><center><img src="http://img.blog.csdn.net/20170106230518290?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="Informed Undersampling"></center></p>
-<p>BalanceCascade算法是一种级联算法，BalanceCascade从多数类$S<em>{max}$中有效地选择N且满 足$\mid N \mid=\mid S</em>{min} \mid$，将N和$S_{min}$合并为新的数据集进行训练，新训练集对每个多数类样本$x<em>i$进行预测 若预测对则$S</em>{max}=S_{maj}-x_i$。依次迭代直到满足某一停止条件，最终的模型是多次迭代模型的组合。<br>    核心思想：使用之前已形成的集成分类器来为下一次训练选择多类样本，然后再进行欠抽样。</p>
+<p>BalanceCascade算法是一种级联算法，BalanceCascade从多数类$S<em>{max}$中有效地选择N且满 足$\mid N \mid=\mid S</em>{min} \mid$，将N和$S<em>{min}$合并为新的数据集进行训练，新训练集对每个多数类样本$x_i$进行预测 若预测对则$S</em>{max}=S_{maj}-x_i$。依次迭代直到满足某一停止条件，最终的模型是多次迭代模型的组合。<br>    核心思想：使用之前已形成的集成分类器来为下一次训练选择多类样本，然后再进行欠抽样。</p>
 <h2 id="代价敏感学习"><a href="#代价敏感学习" class="headerlink" title="代价敏感学习"></a>代价敏感学习</h2><hr>
 <p>代价敏感学习算法(Cost-Sensitive Learning)主要从算法层面上解决不平衡数据学习，代价敏感学习方法的核心要素是代价矩阵，我们注意到在实际的应用中不同类型的误分类情况导致的代价是不一样的，例如在医疗中，“将病 人误疹为健康人”和“将健康人误疹为病人”的代价不同，因此 我们定义代价矩阵如下图所示。</p>
 <p><center><img src="http://img.blog.csdn.net/20170106225945454?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="代价矩阵"><br>代价矩阵</center></p>
@@ -319,17 +320,18 @@
 <p>基于以上代价矩阵的分析，代价敏感学习方法主要有以下三种实现方式</p>
 <ol>
 <li>从学习模型出发，着眼于对某一具体学习方法的改造，使之能适应不平衡数据下的学习，研究者们针对不同的学习模型如感知机，支持向量机，决策 树，神经网络等分别提出了其代价敏感的版本。以代价敏感的决策树为例，可从三个方面对其进行改进以适应不平衡数据的学习，这三个方面分别是决策阈值的选择 方面、分裂标准的选择方面、剪枝方面，这三个方面中都可以将代价矩阵引入，具体实现算法可参考参考文献中的相关文章。</li>
-<li>从贝叶斯风险理论出发，把代价敏感学习看成是分类结果的一种后处理，按照传统方法学习到一个模型，以实现损失最小为目标对结果进行调整，优化公式如下所示。此方法的优点在于它可以不依赖所用具体的分类器，但是缺点也很明显它要求分类器输出值为概率。<br> $$H(x) = \arg \min<em>{i}(\sum</em>{j\in {+,-}}P(j|xc(i,j))$$</li>
+<li>从贝叶斯风险理论出发，把代价敏感学习看成是分类结果的一种后处理，按照传统方法学习到一个模型，以实现损失最小为目标对结果进行调整，优化公式如下所示。此方法的优点在于它可以不依赖所用具体的分类器，但是缺点也很明显它要求分类器输出值为概率。<script type="math/tex; mode=display">H(x) = \arg \min_{i}(\sum_{j\in \{+,-\}}P(j|xc(i,j))</script></li>
 <li>从预处理的角度出发，将代价用于权重的调整，使得分类器满足代价敏感的特性，下面讲解一种基于Adaboost的权重更新策略。</li>
 </ol>
 <h3 id="AdaCost算法"><a href="#AdaCost算法" class="headerlink" title="AdaCost算法"></a>AdaCost算法</h3><p>让我们先来简单回顾一下Adaboost算法，如下图6所示。Adaboost算法通过反复迭代，每一轮迭代学习到一个分类器，并根据当前分类器 的表现更新样本的权重，如图中红框所示，其更新策略为正确分类样本权重降低，错误分类样本权重加大，最终的模型是多次迭代模型的一个加权线性组合，分类越 准确的分类器将会获得越大的权重。</p>
 <p><img src="http://img.blog.csdn.net/20170106230232930?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="Adaboost算法"></p>
-<p>AdaCost算法修改了Adaboost算法的权重更新策略，其基本思想是对于代价高的误分类样本大大地提高其权重，而对于代价高的正确分类样 本适当地降低其权重，使其权重降低相对较小。总体思想是代价高样本权重增加得大降低得慢。其样本权重按照如下公式进行更新。其 中$\beta<em>+$和$\beta</em>-$分别表示样本被正确和错误分类情况下$\beta$的取值。<br>$$\frac{D_{t+1}(i) = D_t(i)\exp (-\alpha_t h_t(x_i)y_i\beta_i)}{Z<em>t}$$<br>$$\beta</em>+ = -0.5C<em>i+0.5$$<br>$$\beta</em>- = 0.5C_i+0.5$$</p>
-<h1 id="不平衡学习的评价方法"><a href="#不平衡学习的评价方法" class="headerlink" title="不平衡学习的评价方法"></a>不平衡学习的评价方法</h1><hr>
+<p>AdaCost算法修改了Adaboost算法的权重更新策略，其基本思想是对于代价高的误分类样本大大地提高其权重，而对于代价高的正确分类样 本适当地降低其权重，使其权重降低相对较小。总体思想是代价高样本权重增加得大降低得慢。其样本权重按照如下公式进行更新。其 中$\beta<em>+$和$\beta</em>-$分别表示样本被正确和错误分类情况下$\beta$的取值。</p>
+<script type="math/tex; mode=display">\frac{D_{t+1}(i) = D_t(i)\exp (-\alpha_t h_t(x_i)y_i\beta_i)}{Z_t}</script><script type="math/tex; mode=display">\beta_+ = -0.5C_i+0.5</script><script type="math/tex; mode=display">\beta_- = 0.5C_i+0.5</script><h1 id="不平衡学习的评价方法"><a href="#不平衡学习的评价方法" class="headerlink" title="不平衡学习的评价方法"></a>不平衡学习的评价方法</h1><hr>
 <h2 id="正确率和F值"><a href="#正确率和F值" class="headerlink" title="正确率和F值"></a>正确率和F值</h2><hr>
 <p><img src="http://img.blog.csdn.net/20170106230450040?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>Precidsion = tp/(tp+fn)<br>Recall =  tp/(tp+fn)<br>F-Measure = (1+β）²<em>Recall</em>Precision / (β²*Recall+Precision）<br>β取值一般为1；<br>Accuracy = (tp+tn)/(pc+nc);<br>ErrorRate = 1- accuracy</p>
 <p>正确率和F值的计算都是基于混淆矩阵(Confusion Matrix)的，混淆矩阵如下图7所示，每行代表预测情况，每列代表实际类别，TP,FP,FN,TN分别代表正类正确分类数量，预测为正类但是真实为负类，预测为负类但是真实为正类，负类正确分类数量。</p>
-<h2 id="G-Mean"><a href="#G-Mean" class="headerlink" title="G-Mean"></a>G-Mean</h2><p>G-Mean是另外一个指标，也能评价不平衡数据的模型表现，其计算公式如下。<br>$$G-mean = \sqrt {\frac{TP}{TP+FN}* \frac{TN}{TN+FP}}$$<br>下面将会介绍TP、TN等</p>
+<h2 id="G-Mean"><a href="#G-Mean" class="headerlink" title="G-Mean"></a>G-Mean</h2><p>G-Mean是另外一个指标，也能评价不平衡数据的模型表现，其计算公式如下。</p>
+<script type="math/tex; mode=display">G-mean = \sqrt {\frac{TP}{TP+FN}* \frac{TN}{TN+FP}}</script><p>下面将会介绍TP、TN等</p>
 <h2 id="ROC曲线和AUC"><a href="#ROC曲线和AUC" class="headerlink" title="ROC曲线和AUC"></a>ROC曲线和AUC</h2><p>为了介绍ROC曲线首先引入两个是，分别是FP_rate和TP_rate，它们分别表示1-负类召回率和正类召回率，显然模型表示最好的时候 FP_rate=0且TP_rate=1，我们以FP_rate为横坐标，TP_rate为纵坐标可以得到点(FP_rate,TP_rate)，通过调 整模型预测的阈值可以得到不同的点，将这些点可以连成一条曲线，这条曲线叫做接受者工作特征曲线(Receiver Operating Characteristic Curve，简称ROC曲线）如下图8所示。显然A点为最优点，ROC曲线越靠近A点代表模型表现越好，曲线下面积（Area Under Curve, AUC）越大，AUC是衡量模型表现好坏的一个重要指标。</p>
 <p><center><img src="http://img.blog.csdn.net/20170106232102016?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="ROC"><br>ROC曲线</center></p>
 <p>Ps：为啥每个公式后面会有一个竖线？？？</p>

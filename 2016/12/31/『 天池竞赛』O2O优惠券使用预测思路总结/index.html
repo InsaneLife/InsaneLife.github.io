@@ -290,6 +290,7 @@
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a><strong>解决方案</strong></h1><p>提供数据的区间是2016-01-01~2016-06-30，预测七月份用户领券使用情况，即用或者不用，转化为<strong>二分类问题</strong>，然后通过分类算法预测结果。首先就是特征工程，其中涉及对数据集合的划分，包括提取特征的区间和训练数据区间。接着就是从特征区间中提取特征，包括用户特征、商户特征、优惠券特征、用户商户组合特征、用户优惠券组合特征。后期在测试区间提取了当天的前后7/3/1天的领券信息（这里面后七天的特征其实是不能应用于工业应用的，因为实际预测中你无法知道后7/3/1天的领券信息），提升较大。最后使用GBDT、RandomForest、LR进行基于rank的分类模型融合</p>
 <hr>
 <h1 id="数据划分"><a href="#数据划分" class="headerlink" title="数据划分"></a><strong>数据划分</strong></h1><p>最初没有使用数据划分，导致特征中产生数据泄露，以至于在训练数据上效果很好，线下测试也还不错，在线上表现确差强人意，后来划分了之后有明显提升。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -311,6 +312,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>并没有划分多个训练集，这一点是要改进之处。</p>
 <hr>
 <h1 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a><strong>特征工程</strong></h1><p>主要有五大特征类：用户特征、商户特征、优惠券特征、用户商户组合特征、用户优惠券组合特征，赛题包括online和offline的数据，由于里面只有部分用户重合，商户优惠券等并未有重合，个人臆测线上应该是淘宝天猫的购买消费数据，有一定关联，但关系微弱，因此只向其中提取了用户特征。而offline数据集就提取了所有五个特征类。一下是各部分特征：  </p>
@@ -514,7 +516,7 @@
 <h1 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a><strong>回顾</strong></h1><p>这一次比赛学习了很多，包括分布式平台ODPS和机器学习平台实现数据清洗，特征提取，特征选择，分类建模、调参及模型融合等，学习摸索了一套方法，使自己建立了信心，明白还有很多需要学习的地方，之前一直对于算法都是当做一个黑匣子，只会熟悉输入输出直接调用，要深入了解算法，才能突破目前的瓶颈有所提高。<br>同时我觉得大家一起探讨交流也很重要，一个人做着做着就容易走偏，纯属个人看法。</p>
 <p>CSDN博客链接：<a href="http://blog.csdn.net/shine19930820/article/details/53995369" target="_blank" rel="external">http://blog.csdn.net/shine19930820/article/details/53995369</a></p>
 <p>授人以鱼不如授人以渔：<br><strong>参考 第一名队伍：【诗人都藏在水底】：<a href="https://github.com/wepe/O2O-Coupon-Usage-Forecast" target="_blank" rel="external">GitHub地址</a></strong></p>
-<p><strong>python sklearn数据预处理：</strong><a href="http://blog.csdn.net/shine19930820/article/details/50915361" target="_blank" rel="external">http://blog.csdn.net/shine19930820/article/details/50915361</a><br><strong>广义线性模型–Generalized Linear Models：</strong><a href="http://blog.csdn.net/shine19930820/article/details/50997645" target="_blank" rel="external">http://blog.csdn.net/shine19930820/article/details/50997645</a><br><strong>交叉验证的Java weka实现，并保存和重载模型：</strong><a href="http://blog.csdn.net/shine19930820/article/details/50921109" target="_blank" rel="external">http://blog.csdn.net/shine19930820/article/details/50921109</a><br><strong>机器学习知识图谱：</strong><a href="http://lib.csdn.net/base/machinelearning/structure" target="_blank" rel="external">http://lib.csdn.net/base/machinelearning/structure</a></p>
+<p><strong>python sklearn数据预处理：</strong><a href="http://blog.csdn.net/shine19930820/article/details/50915361" target="_blank" rel="external">http://blog.csdn.net/shine19930820/article/details/50915361</a><br><strong>广义线性模型—Generalized Linear Models：</strong><a href="http://blog.csdn.net/shine19930820/article/details/50997645" target="_blank" rel="external">http://blog.csdn.net/shine19930820/article/details/50997645</a><br><strong>交叉验证的Java weka实现，并保存和重载模型：</strong><a href="http://blog.csdn.net/shine19930820/article/details/50921109" target="_blank" rel="external">http://blog.csdn.net/shine19930820/article/details/50921109</a><br><strong>机器学习知识图谱：</strong><a href="http://lib.csdn.net/base/machinelearning/structure" target="_blank" rel="external">http://lib.csdn.net/base/machinelearning/structure</a></p>
 
       
       

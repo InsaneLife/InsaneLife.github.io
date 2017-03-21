@@ -285,45 +285,30 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">st=&gt;start: Start</div><div class="line">e=&gt;end: End</div><div class="line">in=&gt;inputoutput: 输入空间</div><div class="line">cond1=&gt;condition: 是否线性可分</div><div class="line">op1=&gt;operation: 核函数(kernel function)</div><div class="line">io=&gt;inputoutput: 特征空间</div><div class="line">op2=&gt;operation: 寻找间隔最大化超平面</div><div class="line">out=&gt;inputoutput: 分类模型</div><div class="line">in-&gt;cond1</div><div class="line">cond1(no)-&gt;op1-&gt;io</div><div class="line">cond1(yes)-&gt;io</div><div class="line">io-&gt;op2-&gt;out</div></pre></td></tr></table></figure>
 <h1 id="线性可分支持向量机"><a href="#线性可分支持向量机" class="headerlink" title="线性可分支持向量机"></a>线性可分支持向量机</h1><p>既然线性可分，学习的目标为在特征空间中找到一个分离超平面，能够将实例分到不同的类。</p>
 <p>给定线性可分训练数据集，通过间隔最大化求解相应的凸二次规划问题学习得到分离超平面为</p>
-<p>$$\omega^*+b=0$$</p>
-<p>相应的分类决策函数为</p>
-<p>$$f(x) = sign(\omega^*+b)$$</p>
-<p>即为线性可分支持向量机。</p>
+<script type="math/tex; mode=display">\omega^*+b=0</script><p>相应的分类决策函数为</p>
+<script type="math/tex; mode=display">f(x) = sign(\omega^*+b)</script><p>即为线性可分支持向量机。</p>
 <p>间隔最大化相应的间隔分为函数间隔和几何间隔。</p>
 <h2 id="函数间隔和几何间隔"><a href="#函数间隔和几何间隔" class="headerlink" title="函数间隔和几何间隔"></a>函数间隔和几何间隔</h2><p><strong>函数间隔</strong>：对于给定的训练数据集T和超平面(w,b)，定义超平面(w,b)关于样本点$(x_i,y_i)$的函数间隔为</p>
-<p>$$\hat{\varUpsilon}_i = y_i(w*x_i+b)$$</p>
-<p>当超平面并未改变，只是成比例改变w和b的时候，函数间隔也会发生变化，如变成2w和2b，超平面未变函数间隔却变成了2倍，所以需要对法向量w加一些约束，如规范化，||w||=1,是的间隔确定，变成了几何间隔。</p>
+<script type="math/tex; mode=display">\hat{\varUpsilon}_i = y_i(w*x_i+b)</script><p>当超平面并未改变，只是成比例改变w和b的时候，函数间隔也会发生变化，如变成2w和2b，超平面未变函数间隔却变成了2倍，所以需要对法向量w加一些约束，如规范化，||w||=1,是的间隔确定，变成了几何间隔。</p>
 <p><strong>函数间隔</strong>：对于给定的训练数据集T和超平面(w,b)，定义超平面(w,b)关于样本点$(x_i,y_i)$的几何间隔为</p>
-<p>$$\hat{\varUpsilon}_i = y_i(\frac{w}{||w||}*x_i+\frac{b}{||w||})$$</p>
-<p>定义超平面(w,b)关于训练数据集T的函数间隔为超平面(w,b)关于T中所有样本点$(x_i,y_i)$的几何间隔最小值，即</p>
-<p>$$\varUpsilon = \min\limits_{i=1,···,N} \hat{\varUpsilon}_i$$</p>
-<p>超平面(w,b)关于样本点$(x_i,y_i)$的几何间隔一般是实例点到超平面的带符号距离，<strong>样本点被超平面正确分类时就是实例点到超平面的距离。</strong></p>
+<script type="math/tex; mode=display">\hat{\varUpsilon}_i = y_i(\frac{w}{||w||}*x_i+\frac{b}{||w||})</script><p>定义超平面(w,b)关于训练数据集T的函数间隔为超平面(w,b)关于T中所有样本点$(x_i,y_i)$的几何间隔最小值，即</p>
+<script type="math/tex; mode=display">\varUpsilon = \min\limits_{i=1,···,N} \hat{\varUpsilon}_i</script><p>超平面(w,b)关于样本点$(x_i,y_i)$的几何间隔一般是实例点到超平面的带符号距离，<strong>样本点被超平面正确分类时就是实例点到超平面的距离。</strong></p>
 <h2 id="间隔最大化"><a href="#间隔最大化" class="headerlink" title="间隔最大化"></a>间隔最大化</h2><p>将问题表示为下面约束最优化问题：</p>
-<p>$$\max\limits_{w,b} \varUpsilon$$</p>
-<p>$$s.t. \ \  y_i(\frac{w}{||w||}*x_i+\frac{b}{||w||}) \geq \varUpsilon,\ \ i=1,2,···,N​$$</p>
-<p>约束条件表示超平面(w,b)关于每个样本点$(x_i,y_i)$的几何间隔至少是$\varUpsilon$</p>
+<script type="math/tex; mode=display">\max\limits_{w,b} \varUpsilon</script><script type="math/tex; mode=display">s.t. \ \  y_i(\frac{w}{||w||}*x_i+\frac{b}{||w||}) \geq \varUpsilon,\ \ i=1,2,···,N​</script><p>约束条件表示超平面(w,b)关于每个样本点$(x_i,y_i)$的几何间隔至少是$\varUpsilon$</p>
 <p>等价于下面约束最优化问题：</p>
-<p>$$\max\limits_{w,b} \frac{\varUpsilon}{||w||}$$</p>
-<p>$$s.t. \ \  y_i(w*x_i + b) \geq \varUpsilon,\ \ i=1,2,···,N$$</p>
-<p>函数间隔取值并不影响最优化问题的解，所以取$\hat{\varUpsilon=1}$，将其带入最优化问题，而最大化$\frac{1}{||w||}$和最小化$\frac{1}{2} ||w||^2$等价，于是转化为一个凸二次规划问题：</p>
-<p>$$\min\limits_{w,b} \frac{1}{2} {||w||^2}$$</p>
-<p>$$s.t. \ \  y_i(w*x_i + b) - 1 \geq 0,\ \ i=1,2,···,N$$</p>
-<h3 id="间隔最大化算法"><a href="#间隔最大化算法" class="headerlink" title="间隔最大化算法"></a><strong>间隔最大化算法</strong></h3><p>输入：线性可分数据集$T={(x_1,y_1),(x_2,y_2),···,(x_N,y_N)}$，其中，$x_i \in \chi = R^n, y_i \in \gamma={-1,+1}, \  i=1,2,···,N $；</p>
+<script type="math/tex; mode=display">\max\limits_{w,b} \frac{\varUpsilon}{||w||}</script><script type="math/tex; mode=display">s.t. \ \  y_i(w*x_i + b) \geq \varUpsilon,\ \ i=1,2,···,N</script><p>函数间隔取值并不影响最优化问题的解，所以取$\hat{\varUpsilon=1}$，将其带入最优化问题，而最大化$\frac{1}{||w||}$和最小化$\frac{1}{2} ||w||^2$等价，于是转化为一个凸二次规划问题：</p>
+<script type="math/tex; mode=display">\min\limits_{w,b} \frac{1}{2} {||w||^2}</script><script type="math/tex; mode=display">s.t. \ \  y_i(w*x_i + b) - 1 \geq 0,\ \ i=1,2,···,N</script><h3 id="间隔最大化算法"><a href="#间隔最大化算法" class="headerlink" title="间隔最大化算法"></a><strong>间隔最大化算法</strong></h3><p>输入：线性可分数据集$T={(x_1,y_1),(x_2,y_2),···,(x_N,y_N)}$，其中，$x_i \in \chi = R^n, y_i \in \gamma={-1,+1}, \  i=1,2,···,N $；</p>
 <p>输出：最大间隔超平面和分类决策函数；</p>
 <ol>
 <li><p>构造并求解约束最优化问题：</p>
-<p>$$\min\limits_{w,b} \frac{1}{2} {||w||^2} \ s.t. \ \  y_i(w*x_i + b) - 1 \geq 0,\ \ i=1,2,···,N$$</p>
-<p>求得最优解$w^<em>, b^</em>$</p>
+<script type="math/tex; mode=display">\min\limits_{w,b} \frac{1}{2} {||w||^2} \\ s.t. \ \  y_i(w*x_i + b) - 1 \geq 0,\ \ i=1,2,···,N</script><p>求得最优解$w^<em>, b^</em>$</p>
 </li>
 <li><p>由此得到超平面：</p>
-<p>$$w^<em> </em>x + b^* = 0$$</p>
-<p>分类决策函数：</p>
-<p>$$f(x) = sign(\omega^*+b)$$</p>
-</li>
+<script type="math/tex; mode=display">w^* *x + b^* = 0</script><p>分类决策函数：</p>
+<script type="math/tex; mode=display">f(x) = sign(\omega^*+b)</script></li>
 </ol>
 <h3 id="支持向量和间隔边界"><a href="#支持向量和间隔边界" class="headerlink" title="支持向量和间隔边界"></a>支持向量和间隔边界</h3><p>线性可分的情况下，训练数据集的样本点与分离超平面距离最近的样本点的实例称为支持向量（support vector），支持向量是使得约束条件等号成立的点，即</p>
-<p>$$y_i(w*x + b) = 0$$</p>
-<p>如图，$H_1, H_2$就是支持向量。</p>
+<script type="math/tex; mode=display">y_i(w*x + b) = 0</script><p>如图，$H_1, H_2$就是支持向量。</p>
 <p><center><img src="http://img.blog.csdn.net/20170316203804430?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></center></p>
 <p><strong>支持向量</strong>在确定分离超平面中起着<strong>决定性作用</strong>，所以这种分类模型称为<strong>支持向量机</strong>。</p>
 <h2 id="学习的对偶算法"><a href="#学习的对偶算法" class="headerlink" title="学习的对偶算法"></a>学习的对偶算法</h2><p>应用拉格朗日对偶性，通过求解对偶问题得到原始问题的最优解，就是线性可分支持向量机的对偶算法，有点在于：</p>
@@ -332,96 +317,67 @@
 <li>方便引入核函数，进而推广到非线性问题求解。</li>
 </ol>
 <p>定义拉格朗日函数：</p>
-<p>$$L(w,b,\alpha) = \frac{1}{2} ||w||^2 - \sum\limits_{i=1}^N \alpha_i y_i(w*x<em>i + b ) + \sum\limits</em>{i=1}^N \alpha_i  \qquad 1.18$$</p>
-<p>原始问题的对偶问题是极大极小问题：</p>
-<p>$$\max\limits<em>\alpha \min\limits</em>{w,b} L(w,b,\alpha)$$</p>
-<ul>
+<script type="math/tex; mode=display">L(w,b,\alpha) = \frac{1}{2} ||w||^2 - \sum\limits_{i=1}^N \alpha_i y_i(w*x_i + b ) + \sum\limits_{i=1}^N \alpha_i  \qquad 1.18</script><p>原始问题的对偶问题是极大极小问题：</p>
+<script type="math/tex; mode=display">\max\limits_\alpha \min\limits_{w,b} L(w,b,\alpha)</script><ul>
 <li><p>首先求$\min\limits_{w,b} L(w,b,\alpha)$:</p>
 <p>将拉格朗日函数对$w,b$求偏导数并令其等于零，获得极值点。</p>
-<p>$$\nabla<em>w L(w,b,\alpha) = w - \sum\limits</em>{i=1}^N \alpha_i y_i x_i = 0 \qquad 1.19$$</p>
-<p>$$\nabla<em>b l(w,b,\alpha) = \sum\limits</em>{i=1}^N \alpha_i y_i = 0 \qquad 1.20$$</p>
-<p>然后回带到1.18式，得到：</p>
-<p>$$\min\limits<em>{w,b} L(w,b,\alpha) = -\frac{1}{2} \sum\limits</em>{i=1}^N \sum\limits_{j=1}^N \alpha_i \alpha_j y_i y_j (x_i*x<em>j) + \sum\limits</em>{i=1}^N \alpha_i$$</p>
-</li>
+<script type="math/tex; mode=display">\nabla_w L(w,b,\alpha) = w - \sum\limits_{i=1}^N \alpha_i y_i x_i = 0 \qquad 1.19</script><script type="math/tex; mode=display">\nabla_b l(w,b,\alpha) = \sum\limits_{i=1}^N \alpha_i y_i = 0 \qquad 1.20</script><p>然后回带到1.18式，得到：</p>
+<script type="math/tex; mode=display">\min\limits_{w,b} L(w,b,\alpha) = -\frac{1}{2} \sum\limits_{i=1}^N \sum\limits_{j=1}^N \alpha_i \alpha_j y_i y_j (x_i*x_j) + \sum\limits_{i=1}^N \alpha_i</script></li>
 <li><p>求$\min\limits_{w,b} L(w,b,\alpha)$对$\alpha$的极大:</p>
-<p>$$\max\limits<em>\alpha ( -\frac{1}{2} \sum\limits</em>{i=1}^N \sum\limits_{j=1}^N \alpha_i \alpha_j y_i y_j (x_i*x<em>j) + \sum\limits</em>{i=1}^N \alpha_i)$$</p>
-<p>$$s.t. \ \ \sum\limits_{i=1}^N \alpha_i y_i = 0 \ \alpha \geq 0, \  i=1,2,…,N$$</p>
-</li>
+<script type="math/tex; mode=display">\max\limits_\alpha ( -\frac{1}{2} \sum\limits_{i=1}^N \sum\limits_{j=1}^N \alpha_i \alpha_j y_i y_j (x_i*x_j) + \sum\limits_{i=1}^N \alpha_i)</script><script type="math/tex; mode=display">s.t. \ \ \sum\limits_{i=1}^N \alpha_i y_i = 0 \\ \alpha \geq 0, \  i=1,2,...,N</script></li>
 </ul>
 <h3 id="线性可分支持向量机学习算法"><a href="#线性可分支持向量机学习算法" class="headerlink" title="线性可分支持向量机学习算法"></a><strong>线性可分支持向量机学习算法</strong></h3><p>输入：线性可分数据集T={(x_1,y_1),(x_2,y_2),···,(x_N,y_N)}，其中，x_i \in \chi = R^n, y_i \in \gamma={-1,+1}, \  i=1,2,···,N ；</p>
 <p>输出：最大间隔超平面和分类决策函数；</p>
 <ol>
 <li><p>构造并求解约束最优化问题：</p>
-<p>$$\min\limits<em>\alpha ( \frac{1}{2} \sum\limits</em>{i=1}^N \sum\limits_{j=1}^N \alpha_i \alpha_j y_i y_j (x_i*x<em>j) - \sum\limits</em>{i=1}^N \alpha_i)$$</p>
-<p>$$s.t. \ \ \sum\limits_{i=1}^N \alpha_i y_i = 0 \ \alpha \geq 0, \  i=1,2,…,N$$</p>
-<p>求得最优解$\alpha^<em> = (\alpha_1^</em>,\alpha_2^<em>,…\alpha_N^</em>)^T$</p>
+<script type="math/tex; mode=display">\min\limits_\alpha ( \frac{1}{2} \sum\limits_{i=1}^N \sum\limits_{j=1}^N \alpha_i \alpha_j y_i y_j (x_i*x_j) - \sum\limits_{i=1}^N \alpha_i)</script><script type="math/tex; mode=display">s.t. \ \ \sum\limits_{i=1}^N \alpha_i y_i = 0 \\ \alpha \geq 0, \  i=1,2,...,N</script><p>求得最优解$\alpha^<em> = (\alpha_1^</em>,\alpha_2^<em>,…\alpha_N^</em>)^T$</p>
 </li>
 <li><p>计算：</p>
-<p>$$w^<em> = \sum\limits_{i=1}^N \alpha_i^</em> y_i x_i$$</p>
-<p>并选择$\alpha_i^<em>$ 的一个正分量$\alpha_j^</em> \geq 0$（其实这个点就是一个支持向量），计算：</p>
-<p>$$b = y<em>i - \sum\limits</em>{i=1}^N \alpha_i^<em> y_i (x_i </em> x_j)$$</p>
-</li>
+<script type="math/tex; mode=display">w^* = \sum\limits_{i=1}^N \alpha_i^* y_i x_i</script><p>并选择$\alpha_i^<em>$ 的一个正分量$\alpha_j^</em> \geq 0$（其实这个点就是一个支持向量），计算：</p>
+<script type="math/tex; mode=display">b = y_i - \sum\limits_{i=1}^N \alpha_i^* y_i (x_i * x_j)</script></li>
 <li><p>由此得到超平面：</p>
-<p>$$w^<em> </em>x + b^* = 0$$</p>
-<p>分类决策函数：</p>
-<p>$$f(x) = sign(\omega^*+b)$$</p>
-</li>
+<script type="math/tex; mode=display">w^* *x + b^* = 0</script><p>分类决策函数：</p>
+<script type="math/tex; mode=display">f(x) = sign(\omega^*+b)</script></li>
 </ol>
 <h1 id="线性支持向量机和软间隔最大化"><a href="#线性支持向量机和软间隔最大化" class="headerlink" title="线性支持向量机和软间隔最大化"></a>线性支持向量机和软间隔最大化</h1><p>线性支持向量机<strong>区别</strong>于线性可分支持向量机，在于面对的是线性不可分的数据，修改硬间隔最大化，变为软间隔最大化。其实一般实际数据都是线性不可分的，因为总会有随机噪声存在。</p>
 <p>线性不可分意味着样本点不能满足函数间隔大于1的约束条件，因此在每个样本点引进一个松弛变量$\xi_i \geq 0$，使得约束条件为：</p>
-<p>$$y_i(w*x_i +b) \geq 1-\xi_i$$</p>
-<p>因此目标函数也发生变化，线性不可分支持向量机学习问题变成如下凸二次优化问题：</p>
-<p>$$ \min\limits<em>{w,b，\xi} \frac{1}{2} {||w||^2}+ C \sum\limits</em>{i=1}^N \xi_i \ s.t. \ \  y_i(w*x_i + b) \geq 1- \xi_i,i=1,2,···,N\ \xi_i \geq 0 i=1,2,···,N$$</p>
-<p>其中C是调和间隔最大化和误分类点的个数两者的系数，C比较大时对误分类的惩罚增大。</p>
+<script type="math/tex; mode=display">y_i(w*x_i +b) \geq 1-\xi_i</script><p>因此目标函数也发生变化，线性不可分支持向量机学习问题变成如下凸二次优化问题：</p>
+<script type="math/tex; mode=display">\min\limits_{w,b，\xi} \frac{1}{2} {||w||^2}+ C \sum\limits_{i=1}^N \xi_i \\ s.t. \ \  y_i(w*x_i + b) \geq 1- \xi_i,i=1,2,···,N\\ \xi_i \geq 0 i=1,2,···,N</script><p>其中C是调和间隔最大化和误分类点的个数两者的系数，C比较大时对误分类的惩罚增大。</p>
 <h2 id="线性支持向量机学习算法"><a href="#线性支持向量机学习算法" class="headerlink" title="线性支持向量机学习算法"></a><strong>线性支持向量机学习算法</strong></h2><p>输入：线性可分数据集$T={(x_1,y_1),(x_2,y_2),···,(x_N,y_N)}$，其中，$x_i \in \chi = R^n, y_i \in \gamma={-1,+1}, \  i=1,2,···,N$ ；</p>
 <p>输出：最大间隔超平面和分类决策函数；</p>
 <ol>
 <li><p>选择惩罚项参数$C \geq 0$，构造并求解凸二次规划问题：</p>
-<p>$$\min\limits<em>\alpha ( \frac{1}{2} \sum\limits</em>{i=1}^N \sum\limits_{j=1}^N \alpha_i \alpha_j y_i y_j (x_i*x<em>j) - \sum\limits</em>{i=1}^N \alpha_i)$$</p>
-<p>$$s.t. \ \ \sum\limits_{i=1}^N \alpha_i y_i = 0 \  0\leq \alpha \leq C, \  i=1,2,…,N$$</p>
-<p>求得最优解$\alpha^<em> = (\alpha_1^</em>,\alpha_2^<em>,…\alpha_N^</em>)^T$</p>
+<script type="math/tex; mode=display">\min\limits_\alpha ( \frac{1}{2} \sum\limits_{i=1}^N \sum\limits_{j=1}^N \alpha_i \alpha_j y_i y_j (x_i*x_j) - \sum\limits_{i=1}^N \alpha_i)</script><script type="math/tex; mode=display">s.t. \ \ \sum\limits_{i=1}^N \alpha_i y_i = 0 \\  0\leq \alpha \leq C, \  i=1,2,...,N</script><p>求得最优解$\alpha^<em> = (\alpha_1^</em>,\alpha_2^<em>,…\alpha_N^</em>)^T$</p>
 </li>
 <li><p>计算：</p>
-<p>$$w^<em> = \sum\limits_{i=1}^N \alpha_i^</em> y_i x_i$$</p>
-<p>并选择$\alpha_i^<em>$ 的一个正分量$C \geq \alpha_j^</em> \geq 0$（其实这个点就是一个支持向量），计算：</p>
-<p>$$b = y<em>i - \sum\limits</em>{i=1}^N \alpha_i^<em> y_i (x_i </em> x_j)$$</p>
-</li>
+<script type="math/tex; mode=display">w^* = \sum\limits_{i=1}^N \alpha_i^* y_i x_i</script><p>并选择$\alpha_i^<em>$ 的一个正分量$C \geq \alpha_j^</em> \geq 0$（其实这个点就是一个支持向量），计算：</p>
+<script type="math/tex; mode=display">b = y_i - \sum\limits_{i=1}^N \alpha_i^* y_i (x_i * x_j)</script></li>
 <li><p>由此得到超平面：</p>
-<p>$$w^<em> </em>x + b^* = 0$$</p>
-<p>分类决策函数：</p>
-<p>$$f(x) = sign(\omega^*+b)$$</p>
-</li>
+<script type="math/tex; mode=display">w^* *x + b^* = 0</script><p>分类决策函数：</p>
+<script type="math/tex; mode=display">f(x) = sign(\omega^*+b)</script></li>
 </ol>
 <p>步骤2中，由于原始问题对b的解并不唯一，所以实际计算时选取在<strong>所有符合条件的样本点上的平均值。</strong></p>
 <h1 id="非线性支持向量机和核函数"><a href="#非线性支持向量机和核函数" class="headerlink" title="非线性支持向量机和核函数"></a>非线性支持向量机和核函数</h1><h2 id="核技巧"><a href="#核技巧" class="headerlink" title="核技巧"></a>核技巧</h2><h3 id="非线性分类问题"><a href="#非线性分类问题" class="headerlink" title="非线性分类问题"></a><strong>非线性分类问题</strong></h3><p>对于给定的训练数据集$T={(x_1,y_1),(x_2,y_2),···,(x_N,y_N)}$，其中，$x_i \in \chi = R^n, y_i \in \gamma={-1,+1}, \  i=1,2,···,N$ 。如果能用$R^n$中单的一个超曲面将正负样例正确分开，则称这个问题为非线性可分问题。</p>
 <p>非线性问题难以求解，所以<strong>进行一个非线性变换，将非线性问题变换为线性问题，通过解变换后的线性问题的方法求解原来的非线性问题。</strong></p>
 <p>核技巧的基本思想就是通过一个非线性变换将输入空间对应一个特征空间，使得在输入空间中的超曲面模型对应特征空间中的超平面模型，这样分类问题的学习就可以通过在特征空间中求解线性支持向量机完成。</p>
 <h3 id="核函数定义"><a href="#核函数定义" class="headerlink" title="核函数定义"></a><strong>核函数定义</strong></h3><p><strong>核函数</strong>： 设$\chi$是输入空间（欧式空间），设$H$为特征空间（希尔伯特空间），如果存在一个从$\chi $到$H$的映射:</p>
-<p>$$\phi(x):\chi \rightarrow H$$</p>
-<p>使得对所有的$x,z \in \chi$，函数$K(x,z)$满足条件：</p>
-<p>$$K(x,z) = \phi(x)*\phi(z)$$</p>
-<p>则称$K(x,z)$为核函数，$\phi(x)$为映射函数，式中$\phi(x)*\phi(x)$为内积。</p>
+<script type="math/tex; mode=display">\phi(x):\chi \rightarrow H</script><p>使得对所有的$x,z \in \chi$，函数$K(x,z)$满足条件：</p>
+<script type="math/tex; mode=display">K(x,z) = \phi(x)*\phi(z)</script><p>则称$K(x,z)$为核函数，$\phi(x)$为映射函数，式中$\phi(x)*\phi(x)$为内积。</p>
 <p>核技巧的思想在于学习预测中只定义核函数$K(x,z)$，而显式地定义函数映射。因为通常直接计算核函数$K(x,z)$比较容易，而通过$\phi(x),\phi(z)$计算$K(x,z)$并不容易。</p>
 <h3 id="核技巧在支持向量机中的应用"><a href="#核技巧在支持向量机中的应用" class="headerlink" title="核技巧在支持向量机中的应用"></a><strong>核技巧在支持向量机中的应用</strong></h3><p>在支持向量机对偶问题中，目标函数和决策函数都涉及输入实例之间的内积形式，在对偶问题中目标函数$x_i<em>x_j$可以用核函数$K(x_i,x_j) = \phi(x_i)</em>\phi(x_j)$代替。目标函数变为：</p>
-<p>$$\min\limits<em>\alpha ( \frac{1}{2} \sum\limits</em>{i=1}^N \sum\limits_{j=1}^N \alpha_i \alpha_j y_i y_j K(x_i,x<em>j) - \sum\limits</em>{i=1}^N \alpha_i)$$</p>
-<p>分类决策函数变为：</p>
-<p>$$f(x) = sign(\sum\limits_{i=1}^{N_s} \alpha_i^<em> y_i \phi(x_i) </em>\phi(x) + b^<em>)\= sign(\sum\limits_{i=1}^{N_s} \alpha_i^</em> y_i K(x_i,x) + b^*)$$</p>
-<h2 id="正定核"><a href="#正定核" class="headerlink" title="正定核"></a>正定核</h2><p>不用构造$\phi(x)$能否直接判断给定函数$K(x,z)$是否是核函数？或者说满足核函数需要什么条件呢？</p>
+<script type="math/tex; mode=display">\min\limits_\alpha ( \frac{1}{2} \sum\limits_{i=1}^N \sum\limits_{j=1}^N \alpha_i \alpha_j y_i y_j K(x_i,x_j) - \sum\limits_{i=1}^N \alpha_i)</script><p>分类决策函数变为：</p>
+<script type="math/tex; mode=display">f(x) = sign(\sum\limits_{i=1}^{N_s} \alpha_i^* y_i \phi(x_i) *\phi(x) + b^*)\\= sign(\sum\limits_{i=1}^{N_s} \alpha_i^* y_i K(x_i,x) + b^*)</script><h2 id="正定核"><a href="#正定核" class="headerlink" title="正定核"></a>正定核</h2><p>不用构造$\phi(x)$能否直接判断给定函数$K(x,z)$是否是核函数？或者说满足核函数需要什么条件呢？</p>
 <p>首先为什么要是正定核：<strong>当$K(x,z)$是正定核函数时，这是一个凸二次规划问题，解释存在的。</strong></p>
 <p><strong>正定核函数（正定核）</strong>的<strong>充要条件</strong>：设$K:\chi \times \chi \rightarrow R$是对称函数，则$K(x,z)$为正定核函数的充要条件是对任意$x_i \in \chi , i=1,2,…,m,  \ K(x,z)$对应的Gram矩阵：</p>
-<p>$$K = [K(x_i,x<em>j)]</em>{m \times m}$$</p>
-<p>是半正定矩阵。</p>
+<script type="math/tex; mode=display">K = [K(x_i,x_j)]_{m \times m}</script><p>是半正定矩阵。</p>
 <h2 id="常用核函数"><a href="#常用核函数" class="headerlink" title="常用核函数"></a><strong>常用核函数</strong></h2><ol>
 <li><p>多项式核函数。</p>
 <p>$K(x,z) = (x*z +1)^p$</p>
 <p>对应的支持向量机是一个p次多项式分类器，再次情况下，分类决策函数为：</p>
-<p>$$f(x) = sign(\sum\limits_{i=1}^{N_s} \alpha_i^<em> y_i (x_i</em>x +1)^p + b^*)$$</p>
-</li>
+<script type="math/tex; mode=display">f(x) = sign(\sum\limits_{i=1}^{N_s} \alpha_i^* y_i (x_i*x +1)^p + b^*)</script></li>
 <li><p>高斯核函数。</p>
-<p>$$K(x,z) = \exp(-\frac{||x-z||^2}{2\sigma^2})$$</p>
-<p>对应的支持向量机是高斯径向基函数分类器，分类决策函数为：</p>
-<p>$$f(x) = sign(\sum\limits_{i=1}^{N_s} \alpha_i^<em> y_i \exp(-\frac{||x-z||^2}{2\sigma^2}) + b^</em>)$$</p>
-</li>
+<script type="math/tex; mode=display">K(x,z) = \exp(-\frac{||x-z||^2}{2\sigma^2})</script><p>对应的支持向量机是高斯径向基函数分类器，分类决策函数为：</p>
+<script type="math/tex; mode=display">f(x) = sign(\sum\limits_{i=1}^{N_s} \alpha_i^* y_i \exp(-\frac{||x-z||^2}{2\sigma^2}) + b^*)</script></li>
 <li><p>字符串核函数。</p>
 <p>核函数不仅可以定义在欧式空间，还可以定义在离散数据集合熵，比如字符串核是定义在字符串集合上的核函数。字符串核函数在文本分类、信息检索、生物信息学方面都有应用。</p>
 </li>
@@ -430,16 +386,12 @@
 <p>输出：分类决策函数；</p>
 <ol>
 <li><p>选取适当的核函数$K(x,z)$和适当的参数C，构造并求解最优化问题：</p>
-<p>$$\min\limits<em>\alpha ( \frac{1}{2} \sum\limits</em>{i=1}^N \sum\limits_{j=1}^N \alpha_i \alpha_j y_i y_j K(x_i,x<em>j) - \sum\limits</em>{i=1}^N \alpha_i)$$</p>
-<p>$$s.t. \ \ \sum\limits_{i=1}^N \alpha_i y_i = 0 \ C \geq\alpha \geq 0, \  i=1,2,…,N$$</p>
-<p>求得最优解$\alpha^<em> = (\alpha_1^</em>,\alpha_2^<em>,…\alpha_N^</em>)^T$</p>
+<script type="math/tex; mode=display">\min\limits_\alpha ( \frac{1}{2} \sum\limits_{i=1}^N \sum\limits_{j=1}^N \alpha_i \alpha_j y_i y_j K(x_i,x_j) - \sum\limits_{i=1}^N \alpha_i)</script><script type="math/tex; mode=display">s.t. \ \ \sum\limits_{i=1}^N \alpha_i y_i = 0 \\ C \geq\alpha \geq 0, \  i=1,2,...,N</script><p>求得最优解$\alpha^<em> = (\alpha_1^</em>,\alpha_2^<em>,…\alpha_N^</em>)^T$</p>
 </li>
 <li><p>选择$\alpha_i^<em>$ 的一个正分量$\alpha_j^</em> \geq 0$（其实这个点就是一个支持向量），计算：</p>
-<p>$$b = y<em>i - \sum\limits</em>{i=1}^N \alpha_i^* y_i K(x_i , x_j)$$</p>
-</li>
+<script type="math/tex; mode=display">b = y_i - \sum\limits_{i=1}^N \alpha_i^* y_i K(x_i , x_j)</script></li>
 <li><p>构造分类决策函数：</p>
-<p>$$f(x) = sign(\sum\limits_{i=1}^{N_s} \alpha_i^<em> y_i K(x_i,x) + b^</em>)$$</p>
-</li>
+<script type="math/tex; mode=display">f(x) = sign(\sum\limits_{i=1}^{N_s} \alpha_i^* y_i K(x_i,x) + b^*)</script></li>
 </ol>
 <p>当$K(x,z)$是正定核函数时，这是一个凸二次规划问题，解释存在的。</p>
 <h2 id=""><a href="#" class="headerlink" title=" "></a> </h2><h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="算法分类"><a href="#算法分类" class="headerlink" title="算法分类"></a>算法分类</h2><p>​    机器学习算法按照<strong>学习方式</strong>分为<strong>监督学习、非监督学习、半监督学习、强化学习</strong></p>
