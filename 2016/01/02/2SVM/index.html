@@ -8,11 +8,11 @@
   <meta name="description" content="『数据挖掘十大算法 』笔记二：SVM-支持向量机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="『数据挖掘十大算法 』笔记二：SVM-支持向量机">
-<meta property="og:url" content="https://insanelife.github.io/2016/01/31/『数据挖掘十大算法 』笔记二：SVM-支持向量机/index.html">
+<meta property="og:url" content="https://insanelife.github.io/2016/01/02/2SVM/index.html">
 <meta property="og:site_name" content="AaronChou's page">
 <meta property="og:description" content="『数据挖掘十大算法 』笔记二：SVM-支持向量机">
 <meta property="og:image" content="http://img.blog.csdn.net/20170316203804430?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2hpbmUxOTkzMDgyMA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-03-21T02:16:44.485Z">
+<meta property="og:updated_time" content="2017-03-24T14:05:11.848Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="『数据挖掘十大算法 』笔记二：SVM-支持向量机">
 <meta name="twitter:description" content="『数据挖掘十大算法 』笔记二：SVM-支持向量机">
@@ -152,7 +152,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/O2O/" style="font-size: 10px;">O2O</a> <a href="/tags/不平衡学习/" style="font-size: 10px;">不平衡学习</a> <a href="/tags/决策树/" style="font-size: 10px;">决策树</a> <a href="/tags/天池/" style="font-size: 10px;">天池</a> <a href="/tags/支持向量机/" style="font-size: 10px;">支持向量机</a> <a href="/tags/数据挖掘/" style="font-size: 15px;">数据挖掘</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a>
+                        <a href="/tags/GBDT/" style="font-size: 10px;">GBDT</a> <a href="/tags/O2O/" style="font-size: 10px;">O2O</a> <a href="/tags/k-means/" style="font-size: 10px;">k-means</a> <a href="/tags/不平衡学习/" style="font-size: 10px;">不平衡学习</a> <a href="/tags/决策树/" style="font-size: 10px;">决策树</a> <a href="/tags/天池/" style="font-size: 10px;">天池</a> <a href="/tags/支持向量机/" style="font-size: 10px;">支持向量机</a> <a href="/tags/数据挖掘/" style="font-size: 15px;">数据挖掘</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a>
                     </div>
                 </section>
                 
@@ -240,11 +240,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-『数据挖掘十大算法 』笔记二：SVM-支持向量机" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-2SVM" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/01/31/『数据挖掘十大算法 』笔记二：SVM-支持向量机/" class="article-date">
-      <time datetime="2016-01-31T07:30:16.000Z" itemprop="datePublished">2016-01-31</time>
+      <a href="/2016/01/02/2SVM/" class="article-date">
+      <time datetime="2016-01-02T07:30:16.000Z" itemprop="datePublished">2016-01-02</time>
 </a>
     </div>
   
@@ -332,7 +332,7 @@
 <li><p>求$\min\limits_{w,b} L(w,b,\alpha)$对$\alpha$的极大:</p>
 <script type="math/tex; mode=display">\max\limits_\alpha ( -\frac{1}{2} \sum\limits_{i=1}^N \sum\limits_{j=1}^N \alpha_i \alpha_j y_i y_j (x_i*x_j) + \sum\limits_{i=1}^N \alpha_i)</script><script type="math/tex; mode=display">s.t. \ \ \sum\limits_{i=1}^N \alpha_i y_i = 0 \\ \alpha \geq 0, \  i=1,2,...,N</script></li>
 </ul>
-<h3 id="线性可分支持向量机学习算法"><a href="#线性可分支持向量机学习算法" class="headerlink" title="线性可分支持向量机学习算法"></a><strong>线性可分支持向量机学习算法</strong></h3><p>输入：线性可分数据集T={(x_1,y_1),(x_2,y_2),···,(x_N,y_N)}，其中，x_i \in \chi = R^n, y_i \in \gamma={-1,+1}, \  i=1,2,···,N ；</p>
+<h3 id="线性可分支持向量机学习算法"><a href="#线性可分支持向量机学习算法" class="headerlink" title="线性可分支持向量机学习算法"></a><strong>线性可分支持向量机学习算法</strong></h3><p>输入：线性可分数据集$T={(x_1,y_1),(x_2,y_2),···,(x_N,y_N)}，其中，x_i \in \chi = R^n, y_i \in \gamma={-1,+1}, \  i=1,2,···,N$.</p>
 <p>输出：最大间隔超平面和分类决策函数；</p>
 <ol>
 <li><p>构造并求解约束最优化问题：</p>
@@ -411,6 +411,7 @@
 <p><strong>回归算法</strong>：试图采用对误差的衡量来探索变量之间的关系的一类算法。常见的回归算法包括最小二乘法 (Least Square)、逻辑回归 (Logistic Regression)、逐步式回归 (Stepwise Regression) 等。</p>
 <p><strong>聚类算法</strong>：通常按照中心点或者分层的方式对输入数据进行归并。所有的聚类算法都试图找到数据的内在结构，以便按照最大的共同点将数据进行归类。常见的聚类算法包括 K-Means 算法以及期望最大化算法 (Expectation Maximization) 等。</p>
 <p><strong>人工神经网络</strong>：模拟生物神经网络，是一类模式匹配算法。通常用于解决分类和回归问题。人工神经网络算法包括感知器神经网络 (Perceptron Neural Network) 、反向传递 (Back Propagation) 和<a href="http://lib.csdn.net/base/deeplearning" target="_blank" rel="external">深度学习</a>等。</p>
+<p>CSDN博客：<a href="http://blog.csdn.net/shine19930820/article/details/62892088" target="_blank" rel="external">http://blog.csdn.net/shine19930820/article/details/62892088</a></p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>《统计学习方法》<br>《The Elements of Statistical Learning 》<br>《Machine Learning A Probabilistic Perspective》<br><a href="http://note.youdao.com/noteshare?id=a2e5bda9a0319920080a19a192177b96&amp;sub=wcp1438842603044242" target="_blank" rel="external">Top 10 algorithms in data mining</a></p>
 
       
@@ -466,13 +467,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/01/31/『数据挖掘十大算法 』笔记二：SVM-支持向量机/">『数据挖掘十大算法 』笔记二：SVM-支持向量机</a></p>
+        <p><span>本文标题:</span><a href="/2016/01/02/2SVM/">『数据挖掘十大算法 』笔记二：SVM-支持向量机</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 AaronChou 的个人博客">AaronChou</a></p>
-        <p><span>发布时间:</span>2016年01月31日 - 15时30分</p>
-        <p><span>最后更新:</span>2017年03月21日 - 10时16分</p>
+        <p><span>发布时间:</span>2016年01月02日 - 15时30分</p>
+        <p><span>最后更新:</span>2017年03月24日 - 22时05分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/01/31/『数据挖掘十大算法 』笔记二：SVM-支持向量机/" title="『数据挖掘十大算法 』笔记二：SVM-支持向量机">https://insanelife.github.io/2016/01/31/『数据挖掘十大算法 』笔记二：SVM-支持向量机/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://insanelife.github.io/2016/01/31/『数据挖掘十大算法 』笔记二：SVM-支持向量机/　　作者: AaronChou" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/01/02/2SVM/" title="『数据挖掘十大算法 』笔记二：SVM-支持向量机">https://insanelife.github.io/2016/01/02/2SVM/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://insanelife.github.io/2016/01/02/2SVM/　　作者: AaronChou" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -485,17 +486,17 @@
 
 <nav id="article-nav">
   
-    <a href="/2016/03/02/不平衡学习的方法 Learning from Imbalanced Data/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/01/03/3k-means/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          不平衡学习的方法 Learning from Imbalanced Data
+          『数据挖掘十大算法 』笔记三：K-means
         
       </div>
     </a>
   
   
-    <a href="/2016/01/15/『数据挖掘十大算法 』笔记一：决策树/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/01/01/1决策树/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">『数据挖掘十大算法 』笔记一：决策树</div>
       <strong class="article-nav-caption">></strong>
     </a>
@@ -555,7 +556,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/01/31/『数据挖掘十大算法 』笔记二：SVM-支持向量机/" data-title="『数据挖掘十大算法 』笔记二：SVM-支持向量机" data-url="https://insanelife.github.io/2016/01/31/『数据挖掘十大算法 』笔记二：SVM-支持向量机/"></div>
+    <div class="ds-thread" data-thread-key="2016/01/02/2SVM/" data-title="『数据挖掘十大算法 』笔记二：SVM-支持向量机" data-url="https://insanelife.github.io/2016/01/02/2SVM/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -578,18 +579,18 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/03/02/不平衡学习的方法 Learning from Imbalanced Data/" title="上一篇: 不平衡学习的方法 Learning from Imbalanced Data">
+            <a href="/2016/01/03/3k-means/" title="上一篇: 『数据挖掘十大算法 』笔记三：K-means">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2016/01/15/『数据挖掘十大算法 』笔记一：决策树/" title="下一篇: 『数据挖掘十大算法 』笔记一：决策树">
+            <a href="/2016/01/01/1决策树/" title="下一篇: 『数据挖掘十大算法 』笔记一：决策树">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/『 天池竞赛』O2O优惠券使用预测思路总结/">『 天池竞赛』O2O优惠券使用预测思路总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/02/不平衡学习的方法 Learning from Imbalanced Data/">不平衡学习的方法 Learning from Imbalanced Data</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/31/『数据挖掘十大算法 』笔记二：SVM-支持向量机/">『数据挖掘十大算法 』笔记二：SVM-支持向量机</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/15/『数据挖掘十大算法 』笔记一：决策树/">『数据挖掘十大算法 』笔记一：决策树</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/31『 天池竞赛』O2O优惠券使用预测思路总结/">『 天池竞赛』O2O优惠券使用预测思路总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/05/5gbdt/">『机器学习算法笔记 』GBDT原理-Gradient Boosting Decision Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/04/4不平衡学习的方法 Learning from Imbalanced Data/">不平衡学习的方法 Learning from Imbalanced Data</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/03/3k-means/">『数据挖掘十大算法 』笔记三：K-means</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/02/2SVM/">『数据挖掘十大算法 』笔记二：SVM-支持向量机</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/1决策树/">『数据挖掘十大算法 』笔记一：决策树</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");

@@ -8,10 +8,10 @@
   <meta name="description" content="数据挖掘十大算法 』笔记一：决策树">
 <meta property="og:type" content="article">
 <meta property="og:title" content="『数据挖掘十大算法 』笔记一：决策树">
-<meta property="og:url" content="https://insanelife.github.io/2016/01/15/『数据挖掘十大算法 』笔记一：决策树/index.html">
+<meta property="og:url" content="https://insanelife.github.io/2016/01/01/1决策树/index.html">
 <meta property="og:site_name" content="AaronChou's page">
 <meta property="og:description" content="数据挖掘十大算法 』笔记一：决策树">
-<meta property="og:updated_time" content="2017-03-21T02:17:30.636Z">
+<meta property="og:updated_time" content="2017-03-24T14:05:02.284Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="『数据挖掘十大算法 』笔记一：决策树">
 <meta name="twitter:description" content="数据挖掘十大算法 』笔记一：决策树">
@@ -150,7 +150,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/O2O/" style="font-size: 10px;">O2O</a> <a href="/tags/不平衡学习/" style="font-size: 10px;">不平衡学习</a> <a href="/tags/决策树/" style="font-size: 10px;">决策树</a> <a href="/tags/天池/" style="font-size: 10px;">天池</a> <a href="/tags/支持向量机/" style="font-size: 10px;">支持向量机</a> <a href="/tags/数据挖掘/" style="font-size: 15px;">数据挖掘</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a>
+                        <a href="/tags/GBDT/" style="font-size: 10px;">GBDT</a> <a href="/tags/O2O/" style="font-size: 10px;">O2O</a> <a href="/tags/k-means/" style="font-size: 10px;">k-means</a> <a href="/tags/不平衡学习/" style="font-size: 10px;">不平衡学习</a> <a href="/tags/决策树/" style="font-size: 10px;">决策树</a> <a href="/tags/天池/" style="font-size: 10px;">天池</a> <a href="/tags/支持向量机/" style="font-size: 10px;">支持向量机</a> <a href="/tags/数据挖掘/" style="font-size: 15px;">数据挖掘</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a>
                     </div>
                 </section>
                 
@@ -238,11 +238,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-『数据挖掘十大算法 』笔记一：决策树" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-1决策树" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/01/15/『数据挖掘十大算法 』笔记一：决策树/" class="article-date">
-      <time datetime="2016-01-15T07:30:16.000Z" itemprop="datePublished">2016-01-15</time>
+      <a href="/2016/01/01/1决策树/" class="article-date">
+      <time datetime="2016-01-01T07:30:16.000Z" itemprop="datePublished">2016-01-01</time>
 </a>
     </div>
   
@@ -283,15 +283,15 @@
         <p>[TOC]</p>
 <h1 id="数据挖掘Top-10算法"><a href="#数据挖掘Top-10算法" class="headerlink" title="数据挖掘Top 10算法"></a>数据挖掘Top 10算法</h1><p><strong>C4.5, k-Means, SVM, Apriori, EM, PageRank, AdaBoost, kNN, Naive Bayes, and CART</strong></p>
 <hr>
-<h1 id="决策树模型与学习"><a href="#决策树模型与学习" class="headerlink" title="决策树模型与学习"></a>决策树模型与学习</h1><p>?    决策树是一种基本的<strong>分类与回归</strong>方法。误以为决策树就只是分类，它是一种树形结构，有结点和有向边构成，结点有内部结点和叶节点，内部结点代表一个特征或者属性，叶节点代表一个类。</p>
-<p>?    决策树算法包含<strong>特征选择、决策树生成、决策树剪枝</strong>过程。</p>
+<h1 id="决策树模型与学习"><a href="#决策树模型与学习" class="headerlink" title="决策树模型与学习"></a>决策树模型与学习</h1><p>决策树是一种基本的<strong>分类与回归</strong>方法。误以为决策树就只是分类，它是一种树形结构，有结点和有向边构成，结点有内部结点和叶节点，内部结点代表一个特征或者属性，叶节点代表一个类。</p>
+<p>决策树算法包含<strong>特征选择、决策树生成、决策树剪枝</strong>过程。</p>
 <h1 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h1><p>即选取对训练数据具有分类能力的特征。如何选取特征呢，可以通过<strong>信息增益，信息增益率，Gini指数</strong>等。</p>
 <h2 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h2><h3 id="熵-entropy"><a href="#熵-entropy" class="headerlink" title="熵(entropy)"></a>熵(entropy)</h3><p>熵表示随机变量不确定性度量，对于X它为有限取值的离散随机变量</p>
 <script type="math/tex; mode=display">P(X = x_i) = p_i, i = 1,2,3,...,n</script><p>则其熵定义为:</p>
 <script type="math/tex; mode=display">H(X) = - \sum_{i=1}^{n}p_i\log{p_i}</script><p>其中若$p_i$=0，则定义$0log0=0$，其中熵与X的值无关，只和X的分布有关。</p>
 <p><strong>熵越大，随机变量的不确定性越大</strong>,$0\leq H(p) \leq \log{n}$</p>
 <h3 id="条件熵"><a href="#条件熵" class="headerlink" title="条件熵"></a>条件熵</h3><p>条件熵定义为X给定条件下Y的条件概率分布对X的期望：</p>
-<script type="math/tex; mode=display">H(Y|X) = \sum_{i=1}^{n}p_i H(Y|X=x_i)</script><p>其中$p<em>i=P(X=x_i)$, $H(Y|X=x_i)= - \sum</em>{ j=1}^{n}P(X=x_i, Y=y_j)\log{P(X=x_i, Y=y_j)}$$</p>
+<script type="math/tex; mode=display">H(Y|X) = \sum_{i=1}^{n}p_i H(Y|X=x_i)</script><p>其中$p<em>i=P(X=x_i)$, $H(Y|X=x_i)= - \sum</em>{ j=1}^{n}P(X=x_i, Y=y_j)\log{P(X=x_i, Y=y_j)}$</p>
 <h3 id="信息增益-1"><a href="#信息增益-1" class="headerlink" title="信息增益"></a>信息增益</h3><p>信息增益表示得知特征A的信息而使得类Y的信息的不确定性减少的程度。信息增益定义为集合D的经验熵H(D)与特征A给定条件下D的经验条件熵H(D|A)之差，即：</p>
 <script type="math/tex; mode=display">g(D,A)=H(D)-H(D|A)</script><h4 id="信息增益算法"><a href="#信息增益算法" class="headerlink" title="信息增益算法"></a>信息增益算法</h4><ol>
 <li><p>计算数据集D的经验熵：</p>
@@ -305,26 +305,26 @@
 <p>特征A对训练数据集D的信息增益比$g_R(D,A)$定义为其信息增益g(D,A)与训练数据集D关于特征A的值得熵$H_A(D)$之比，即：</p>
 <script type="math/tex; mode=display">g_R(D,A) = \frac{g(D,A)}{H_A(D)}</script><p>其中$H<em>A(D) = - \sum</em>{i=1}^{n} \frac{|D_i|}{|D|} \log_2{\frac{|D_i|}{|D|} }$, n为特征A的取值个数。</p>
 <h1 id="决策树生成"><a href="#决策树生成" class="headerlink" title="决策树生成"></a>决策树生成</h1><h2 id="ID3算法"><a href="#ID3算法" class="headerlink" title="ID3算法"></a>ID3算法</h2><p>ID3算法核心是在决策树各个节点上应用<strong>信息增益</strong>准则选择特征，递归构建决策树。</p>
-<p>输入：给定训练数据集D, 特征集A, 阈值?。</p>
+<p>输入：给定训练数据集D, 特征集A, 阈值$\epsilon$。</p>
 <p>输出：决策树.</p>
 <ol>
 <li>若D中所有实例属于同一类$C_k$，则T为单结点树，并将类$C_k$作为该结点的类标记，返回T.</li>
-<li>若A=?，则T为单结点树，并将D中实例数最大的类$C_k$作为该结点的类标记，返回T；</li>
+<li>若A=$\emptyset$，则T为单结点树，并将D中实例数最大的类$C_k$作为该结点的类标记，返回T；</li>
 <li>否则，计算A中各特征对D的信息增益，选择<strong>信息增益</strong>最大的特征$A_g$；</li>
-<li>如果$A_g$的信息增益小于阈值?，则置T为单结点树，并将D中实例数最大的类$C_k$作为该结点的类标记，返回T；</li>
+<li>如果$A_g$的信息增益小于阈值$\epsilon$，则置T为单结点树，并将D中实例数最大的类$C_k$作为该结点的类标记，返回T；</li>
 <li>否则，对$A_g$的每一个可能值$a_i$，将D分割为若干个非空子集$D_i$，将$D_i$中实例数最大的类作为标记，构建子结点，由结点及其子结点构成树T，返回T.</li>
-<li>对第i个子节点，以$D_i$为训练集，以$A?A_g$为特征集，递归调用步（1）-（5），得到字数$T_i$，返回$T_i$。</li>
+<li>对第i个子节点，以$D_i$为训练集，以$A-A_g$为特征集，递归调用步（1）-（5），得到字数$T_i$，返回$T_i$。</li>
 </ol>
 <h2 id="C4-5算法"><a href="#C4-5算法" class="headerlink" title="C4.5算法"></a>C4.5算法</h2><p>C4.5是ID3的改进算法，只是它用<strong>信息增益比</strong>准则选择特征，递归构建决策树。</p>
-<p>输入：给定训练数据集D, 特征集A, 阈值?。</p>
+<p>输入：给定训练数据集D, 特征集A, 阈值$\epsilon$。</p>
 <p>输出：决策树.</p>
 <ol>
 <li>若D中所有实例属于同一类$C_k$，则T为单结点树，并将类$C_k$作为该结点的类标记，返回T.</li>
-<li>若A=?，则T为单结点树，并将D中实例数最大的类$C_k$作为该结点的类标记，返回T；</li>
+<li>若A=$\emptyset$，则T为单结点树，并将D中实例数最大的类$C_k$作为该结点的类标记，返回T；</li>
 <li>否则，计算A中各特征对D的信息增益比，选择<strong>信息增益比</strong>最大的特征$A_g$；</li>
-<li>如果$A_g$的信息增益比小于阈值?，则置T为单结点树，并将D中实例数最大的类$C_k$作为该结点的类标记，返回T；</li>
+<li>如果$A_g$的信息增益比小于阈值$\epsilon$，则置T为单结点树，并将D中实例数最大的类$C_k$作为该结点的类标记，返回T；</li>
 <li>否则，对$A_g$的每一个可能值$a_i$，将D分割为若干个非空子集$D_i$，将$D_i$中实例数最大的类作为标记，构建子结点，由结点及其子结点构成树T，返回T.</li>
-<li>对第i个子节点，以$D_i$为训练集，以$A?A_g$为特征集，递归调用步（1）-（5），得到字数$T_i$，返回$T_i$。</li>
+<li>对第i个子节点，以$D_i$为训练集，以$A-A_g$为特征集，递归调用步（1）-（5），得到字数$T_i$，返回$T_i$。</li>
 </ol>
 <h1 id="决策树剪枝"><a href="#决策树剪枝" class="headerlink" title="决策树剪枝"></a>决策树剪枝</h1><p>决策树生成算法可能产生过于复杂的树结构，发生<strong>过拟合</strong>的现象，解决此问题的方法就是对其简化，即剪枝。</p>
 <h2 id="先验设定控制复杂度"><a href="#先验设定控制复杂度" class="headerlink" title="先验设定控制复杂度"></a>先验设定控制复杂度</h2><ul>
@@ -335,21 +335,22 @@
 <p>决策树剪枝一种方法是通过极小化决策树整体<strong>损失函数</strong>或<strong>代价函数</strong>实现。</p>
 <h2 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h2><p>设数T的叶节点个数为$|T|$，对于叶节点t，其有$N<em>t$个样本点，其中k类有样本点$N</em>{tk}$个，$H_t(T)$为叶节点t上的经验熵，$\alpha \geq 0$为参数，损失函数定义为：</p>
 <script type="math/tex; mode=display">C_\alpha(T) = \sum_{t=1}^{|T|} N_t H_t(T) + \alpha|T|</script><p>经验熵为：</p>
-<script type="math/tex; mode=display">H_t(T) = -\sum_k \frac{N_{tk}}{N_t}?</script><p>记$C(T) = \sum<em>{t=1}^{|T|} N_t H_t(T) = -  \sum</em>{t=1}^{|T|} \sum<em>{k=1}^{|K|} N</em>{tk}log{\frac{N_{tk}}{N_t}}$$</p>
+<script type="math/tex; mode=display">H_t(T) = -\sum_k \frac{N_{tk}}{N_t}</script><p>记$C(T) = \sum<em>{t=1}^{|T|} N_t H_t(T) = -  \sum</em>{t=1}^{|T|} \sum<em>{k=1}^{|K|} N</em>{tk}log{\frac{N_{tk}}{N_t}}$</p>
 <p>得到：</p>
 <script type="math/tex; mode=display">C_\alpha(T) = C(T)+ \alpha|T|</script><p>其中，$C(T)$表示模型对训练数据的误差，即拟合度。|T|表示模型复杂度，参数$\alpha \geq 0$控制两者之间的影响。</p>
 <h2 id="剪枝算法"><a href="#剪枝算法" class="headerlink" title="剪枝算法"></a>剪枝算法</h2><p>剪枝，就是在确定α情况下，选择<strong>损失函数</strong>最小的模型。</p>
 <p>输入：生成算法产生的整个数T，参数α</p>
-<p>输出：修剪之后的子树$T_\alpha$$</p>
+<p>输出：修剪之后的子树$T_\alpha$</p>
 <ol>
 <li><p>计算每个节点的经验熵</p>
 </li>
 <li><p>递归的从树的叶节点向上回缩。对比回缩到其父节点前后的树$T<em>B, T_A$，比较其损失函数，若$C</em>\alpha(T<em>A) \leq C</em>\alpha(T_B)$，则进行剪枝，父节点变为新的节点。</p>
 </li>
-<li><p>返回2，直到不能继续为止，获得损失函数最小的子树$T_\alpha$$</p>
+<li><p>返回2，直到不能继续为止，获得损失函数最小的子树$T_\alpha$</p>
 </li>
 </ol>
-<h1 id="CART算法"><a href="#CART算法" class="headerlink" title="CART算法"></a>CART算法</h1><p>分类与回归树（CART）同样由特征选择、树的生成和剪枝组成。但CART还在给定输入随机变量X条件下输出随机变量Y的<strong>条件概率分布</strong>的学习方法。<br>?<br>CART假设决策树是二叉树，递归地二分每个特征，将输入空间划分为有限个单元，并在这些单元上预测概率分布。<br>CART由两步组成：</p>
+<h1 id="CART算法"><a href="#CART算法" class="headerlink" title="CART算法"></a>CART算法</h1><p>分类与回归树（CART）同样由特征选择、树的生成和剪枝组成。但CART还在给定输入随机变量X条件下输出随机变量Y的<strong>条件概率分布</strong>的学习方法。</p>
+<p>CART假设决策树是二叉树，递归地二分每个特征，将输入空间划分为有限个单元，并在这些单元上预测概率分布。<br>CART由两步组成：</p>
 <ol>
 <li><strong>树生成</strong>：基于训练集生成决策树，生成决策树尽量地大。</li>
 <li><strong>树的剪枝</strong>：用验证集对已生成的树进行剪枝并选择最优子树。</li>
@@ -360,17 +361,17 @@
 <p>在训练数据集所在输入空间中，递归地将每个区域划分为两个子区域并决定每个子区域上的输出值，构建二叉决策树。</p>
 <ol>
 <li><p>选择最优切分变量j与切分点s，求解</p>
-<script type="math/tex; mode=display">\min\limits_{j,s} [ \min\limits_{c_1} \sum\limits_{x_i \in R_1(j,s)} (y_i-c_1)^2 + \min\limits_{c_2} \sum\limits_{x_i \in R_2(j,s)} (y_i - c_2)^2]</script><p>其中，$R_1(j,s) = {x|x^{(j)} \le s}$，$R_2(j,s) = {x|x^{(j)} \ge s}$，遍历变量j，对固定切分变量j扫描切分点s，选择是上式达到最小值的对(j,s)。</p>
+<script type="math/tex; mode=display">\min\limits_{j,s} [ \min\limits_{c_1} \sum\limits_{x_i \in R_1(j,s)} (y_i-c_1)^2 + \min\limits_{c_2} \sum\limits_{x_i \in R_2(j,s)} (y_i - c_2)^2]</script><p>其中，$R_1(j,s) = {x|x^{(j)} \le s},\ \ R_2(j,s) = {x|x^{(j)} \ge s}$，遍历变量j，对固定切分变量j扫描切分点s，选择是上式达到最小值的对(j,s)。</p>
 </li>
 <li><p>用选定的对(j,s)划分区域并决定相应的输出值。</p>
-<script type="math/tex; mode=display">R_1(j,s) = \{x|x^{(j)} \le s\}$，$R_2(j,s) = \{x|x^{(j)} \ge s\}</script><script type="math/tex; mode=display">\hat{c} = \frac{1}{N_m} \sum\limits_{x_i  \in R_m(j,s)} y_i,x \in R_m, m =1,2</script></li>
+<script type="math/tex; mode=display">R_1(j,s) = \{x|x^{(j)} \le s\},\ \ R_2(j,s) = \{x|x^{(j)} \ge s\}</script><script type="math/tex; mode=display">\hat{c} = \frac{1}{N_m} \sum\limits_{x_i  \in R_m(j,s)} y_i,x \in R_m, m =1,2</script></li>
 <li><p>继续对两个子区域调用步骤1,2，直到满足停止条件。</p>
 </li>
 <li><p>将输入空间划分为M个区域，$R_1,R_2,···R_m$，生成决策树。</p>
 <script type="math/tex; mode=display">f(x) = \sum\limits_{m=1}^{M} \hat{c} I(x \in R_m)</script></li>
 </ol>
 <h3 id="分类树的生成"><a href="#分类树的生成" class="headerlink" title="分类树的生成"></a>分类树的生成</h3><h4 id="Gini指数"><a href="#Gini指数" class="headerlink" title="Gini指数"></a>Gini指数</h4><p>分类问题中，假设K个类，样本点属于第k类的概率为$p_k$，则概率分布的基尼指数为:</p>
-<script type="math/tex; mode=display">Gini(p) = \sum\limits_{k=1}^K p_k(1-p_k) = 1- \sum\limits_{k=1}^K p_k^2</script><p>对于二分类问题，K=2, $Gini(p) = 2p(1-p)$$</p>
+<script type="math/tex; mode=display">Gini(p) = \sum\limits_{k=1}^K p_k(1-p_k) = 1- \sum\limits_{k=1}^K p_k^2</script><p>对于二分类问题，K=2, $Gini(p) = 2p(1-p)$</p>
 <p>实际情况中，对于给定样本集合D，并没有$p_k$值，令$p_k = \frac{|C_k|}{|D|}$，其基尼指数为：</p>
 <script type="math/tex; mode=display">Gini(D) = 1-\sum\limits_{k=1}^K (\frac{|C_k|}{|D|})^2</script><p>其中$C_k$是D中属于第k类的样本子集，K是类的个数。</p>
 <p>如果样本集合D根据特征A是否取某一可能值a被分割成$D_1,D_2$两部分，即</p>
@@ -399,22 +400,23 @@
 </li>
 <li><p>设$k = k+1,\alpha_k = \alpha, T_k=T$。</p>
 </li>
-<li><p>如果$T_k$不是由根节点及两个叶结点构成的树，则回到步骤2，否则$T_k = T_n$$</p>
+<li><p>如果$T_k$不是由根节点及两个叶结点构成的树，则回到步骤2，否则$T_k = T_n$。</p>
 </li>
 <li><p>采用交叉验证法在子树序列$T<em>0,T_1,···T_n$中选取最优子树$T</em>\alpha$。</p>
 </li>
 </ol>
-<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="算法分类"><a href="#算法分类" class="headerlink" title="算法分类"></a>算法分类</h2><p>?    机器学习算法按照<strong>学习方式</strong>分为<strong>监督学习、非监督学习、半监督学习、强化学习</strong></p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="算法分类"><a href="#算法分类" class="headerlink" title="算法分类"></a>算法分类</h2><p>机器学习算法按照<strong>学习方式</strong>分为<strong>监督学习、非监督学习、半监督学习、强化学习</strong></p>
 <p><strong>监督学习</strong>：从给定的训练数据集中学习出一个函数，当新的数据到来时，可以根据这个函数预测结果。训练集中的目标是由人标注的。</p>
 <p><strong>非监督式学习</strong>：与监督学习相比，训练集没有人为标注的结果。常见的非监督式学习算法有聚类。</p>
 <p><strong>半监督式学习</strong>：输入数据部分被标识，部分没有被标识，介于监督式学习与非监督式学习之间。常见的半监督式学习算法有支持向量机。</p>
 <p><strong>强化学习</strong>：在这种学习模式下，输入数据作为对模型的反馈，不像监督模型那样，输入数据仅仅是作为一个检查模型对错的方式，在强化学习下，输入数据直接反馈到模型，模型必须对此立刻作出调整。常见的强化学习算法有时间差学习。</p>
 <hr>
-<p>?    按照<strong>算法类似性</strong>分为决策树学习、回归、聚类、人工神经网络</p>
+<p>按照<strong>算法类似性</strong>分为决策树学习、回归、聚类、人工神经网络</p>
 <p><strong>决策树</strong>：根据数据的属性采用树状结构建立决策模型。决策树模型常常用来解决分类和回归问题。常见的算法包括 CART (Classification And Regression Tree)、ID3、C4.5、随机森林 (Random Forest) 等。</p>
 <p><strong>回归算法</strong>：试图采用对误差的衡量来探索变量之间的关系的一类算法。常见的回归算法包括最小二乘法 (Least Square)、逻辑回归 (Logistic Regression)、逐步式回归 (Stepwise Regression) 等。</p>
 <p><strong>聚类算法</strong>：通常按照中心点或者分层的方式对输入数据进行归并。所有的聚类算法都试图找到数据的内在结构，以便按照最大的共同点将数据进行归类。常见的聚类算法包括 K-Means 算法以及期望最大化算法 (Expectation Maximization) 等。</p>
 <p><strong>人工神经网络</strong>：模拟生物神经网络，是一类模式匹配算法。通常用于解决分类和回归问题。人工神经网络算法包括感知器神经网络 (Perceptron Neural Network) 、反向传递 (Back Propagation) 和<a href="http://lib.csdn.net/base/deeplearning" target="_blank" rel="external">深度学习</a>等。</p>
+<p>CSDN博客：<a href="http://blog.csdn.net/shine19930820/article/details/62233166" target="_blank" rel="external">http://blog.csdn.net/shine19930820/article/details/62233166</a></p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>《统计学习方法》<br>《The Elements of Statistical Learning 》<br>《Machine Learning A Probabilistic Perspective》<br><a href="http://note.youdao.com/noteshare?id=a2e5bda9a0319920080a19a192177b96&amp;sub=wcp1438842603044242" target="_blank" rel="external">Top 10 algorithms in data mining</a></p>
 
       
@@ -470,13 +472,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/01/15/『数据挖掘十大算法 』笔记一：决策树/">『数据挖掘十大算法 』笔记一：决策树</a></p>
+        <p><span>本文标题:</span><a href="/2016/01/01/1决策树/">『数据挖掘十大算法 』笔记一：决策树</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 AaronChou 的个人博客">AaronChou</a></p>
-        <p><span>发布时间:</span>2016年01月15日 - 15时30分</p>
-        <p><span>最后更新:</span>2017年03月21日 - 10时17分</p>
+        <p><span>发布时间:</span>2016年01月01日 - 15时30分</p>
+        <p><span>最后更新:</span>2017年03月24日 - 22时05分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/01/15/『数据挖掘十大算法 』笔记一：决策树/" title="『数据挖掘十大算法 』笔记一：决策树">https://insanelife.github.io/2016/01/15/『数据挖掘十大算法 』笔记一：决策树/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://insanelife.github.io/2016/01/15/『数据挖掘十大算法 』笔记一：决策树/　　作者: AaronChou" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/01/01/1决策树/" title="『数据挖掘十大算法 』笔记一：决策树">https://insanelife.github.io/2016/01/01/1决策树/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://insanelife.github.io/2016/01/01/1决策树/　　作者: AaronChou" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -489,7 +491,7 @@
 
 <nav id="article-nav">
   
-    <a href="/2016/01/31/『数据挖掘十大算法 』笔记二：SVM-支持向量机/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/01/02/2SVM/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
@@ -554,7 +556,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/01/15/『数据挖掘十大算法 』笔记一：决策树/" data-title="『数据挖掘十大算法 』笔记一：决策树" data-url="https://insanelife.github.io/2016/01/15/『数据挖掘十大算法 』笔记一：决策树/"></div>
+    <div class="ds-thread" data-thread-key="2016/01/01/1决策树/" data-title="『数据挖掘十大算法 』笔记一：决策树" data-url="https://insanelife.github.io/2016/01/01/1决策树/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -577,7 +579,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/01/31/『数据挖掘十大算法 』笔记二：SVM-支持向量机/" title="上一篇: 『数据挖掘十大算法 』笔记二：SVM-支持向量机">
+            <a href="/2016/01/02/2SVM/" title="上一篇: 『数据挖掘十大算法 』笔记二：SVM-支持向量机">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -586,7 +588,7 @@
             <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/『 天池竞赛』O2O优惠券使用预测思路总结/">『 天池竞赛』O2O优惠券使用预测思路总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/02/不平衡学习的方法 Learning from Imbalanced Data/">不平衡学习的方法 Learning from Imbalanced Data</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/31/『数据挖掘十大算法 』笔记二：SVM-支持向量机/">『数据挖掘十大算法 』笔记二：SVM-支持向量机</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/15/『数据挖掘十大算法 』笔记一：决策树/">『数据挖掘十大算法 』笔记一：决策树</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/31『 天池竞赛』O2O优惠券使用预测思路总结/">『 天池竞赛』O2O优惠券使用预测思路总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/05/5gbdt/">『机器学习算法笔记 』GBDT原理-Gradient Boosting Decision Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/04/4不平衡学习的方法 Learning from Imbalanced Data/">不平衡学习的方法 Learning from Imbalanced Data</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/03/3k-means/">『数据挖掘十大算法 』笔记三：K-means</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/02/2SVM/">『数据挖掘十大算法 』笔记二：SVM-支持向量机</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/1决策树/">『数据挖掘十大算法 』笔记一：决策树</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");

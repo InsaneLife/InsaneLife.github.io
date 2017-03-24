@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>『数据挖掘十大算法 』笔记三：K-means | AaronChou&#39;s page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="『数据挖掘十大算法 』笔记三：K-means">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『数据挖掘十大算法 』笔记三：K-means">
+<meta property="og:url" content="https://insanelife.github.io/2016/01/03/3k-means/index.html">
+<meta property="og:site_name" content="AaronChou's page">
+<meta property="og:description" content="『数据挖掘十大算法 』笔记三：K-means">
+<meta property="og:updated_time" content="2017-03-24T14:05:20.516Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="『数据挖掘十大算法 』笔记三：K-means">
+<meta name="twitter:description" content="『数据挖掘十大算法 』笔记三：K-means">
+  
+    <link rel="alternative" href="/atom.xml" title="AaronChou&#39;s page" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">AaronChou</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">立刻有</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="https://insanelife.github.io/">博客首页</a></li>
+                        
+                            <li><a href="https://github.com/InsaneLife">作品展示</a></li>
+                        
+                            <li><a href="/about">留言打卡</a></li>
+                        
+                            <li><a href="http://blog.csdn.net/shine19930820">CSDN</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="/zhiyangzhou@foxmail.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/InsaneLife" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="http://weibo.com/zhiyangchou/profile" title="weibo">weibo</a>
+                            
+                                <a class="fl google" target="_blank" href="#" title="google">google</a>
+                            
+                                <a class="fl twitter" target="_blank" href="#" title="twitter">twitter</a>
+                            
+                                <a class="fl linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/GBDT/" style="font-size: 10px;">GBDT</a> <a href="/tags/O2O/" style="font-size: 10px;">O2O</a> <a href="/tags/k-means/" style="font-size: 10px;">k-means</a> <a href="/tags/不平衡学习/" style="font-size: 10px;">不平衡学习</a> <a href="/tags/决策树/" style="font-size: 10px;">决策树</a> <a href="/tags/天池/" style="font-size: 10px;">天池</a> <a href="/tags/支持向量机/" style="font-size: 10px;">支持向量机</a> <a href="/tags/数据挖掘/" style="font-size: 15px;">数据挖掘</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://insanelife.github.io/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/shine19930820">CSDN</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://weibo.com/zhiyangchou/profile">weibo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://user.qzone.qq.com/993001803">QQ</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱运动、爱交友、爱旅行、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">AaronChou</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">AaronChou</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">立刻有</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="https://insanelife.github.io/">博客首页</a></li>
+                
+                    <li><a href="https://github.com/InsaneLife">作品展示</a></li>
+                
+                    <li><a href="/about">留言打卡</a></li>
+                
+                    <li><a href="http://blog.csdn.net/shine19930820">CSDN</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="/zhiyangzhou@foxmail.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/InsaneLife" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="http://weibo.com/zhiyangchou/profile" title="weibo">weibo</a>
+                    
+                        <a class="google" target="_blank" href="#" title="google">google</a>
+                    
+                        <a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+                    
+                        <a class="linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-3k-means" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/03/3k-means/" class="article-date">
+      <time datetime="2016-01-03T07:30:16.000Z" itemprop="datePublished">2016-01-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      『数据挖掘十大算法 』笔记三：K-means
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/k-means/">k-means</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据挖掘/">数据挖掘</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>[TOC]</p>
+<h1 id="数据挖掘Top-10算法"><a href="#数据挖掘Top-10算法" class="headerlink" title="数据挖掘Top 10算法"></a>数据挖掘Top 10算法</h1><p><strong>C4.5, k-Means, SVM, Apriori, EM, PageRank, AdaBoost, kNN, Naive Bayes, and CART</strong></p>
+<hr>
+<h1 id="K-means算法"><a href="#K-means算法" class="headerlink" title="K-means算法:"></a>K-means算法:</h1><h2 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h2><p>输入：聚类个数k，以及包含 n个数据对象的数据库。<br>输出：满足方差最小标准的k个聚类。<br>算法流程：        </p>
+<ol>
+<li>从 n个数据对象任意选择 k 个对象作为初始聚类中心。</li>
+<li>若果不满足终止条件，到3，否则到6。</li>
+<li>根据每个聚类的中心对象，计算每个对象与这些中心对象的距离；并根据距离最小的中心重新对相应对象划分新的类，例如Pi离中心Si最近，则输入Si点群。</li>
+<li>重新计算每个（有变化）聚类的中心对象。</li>
+<li>若满足终止条件到6，否则循环(2)到(3)直到每个聚类满足终止条件。</li>
+<li>输出聚类结果。</li>
+</ol>
+<p>算法很简单，其中主要的就是求中心点算法.<br>由于随机选择初始质心，所以可能两次聚类结果完全不同。</p>
+<h2 id="求中心点算法"><a href="#求中心点算法" class="headerlink" title="求中心点算法"></a>求中心点算法</h2><p>求点群中心点的算法你可以很简的使用各个点的各自维度的平均值。<strong>为什么这么取值</strong>可以见后面聚类算法评估标准的SSE函数求偏导。</p>
+<h2 id="距离公式"><a href="#距离公式" class="headerlink" title="距离公式"></a>距离公式</h2><h3 id="Minkowski-Distance公式"><a href="#Minkowski-Distance公式" class="headerlink" title="Minkowski Distance公式"></a>Minkowski Distance公式</h3><script type="math/tex; mode=display">d_{ij} = \sqrt[\lambda]{\sum\limits_{k=1}^n {|x_{ik}-x_{jk}|}^\lambda}</script><p>n是其维度。λ可以随意取值，可以是负数，也可以是正数，或是无穷大。</p>
+<h3 id="Euclidean-Distance公式"><a href="#Euclidean-Distance公式" class="headerlink" title="Euclidean Distance公式"></a>Euclidean Distance公式</h3><p>也就是Minkowski Distance公式λ=2的情况</p>
+<script type="math/tex; mode=display">d_{ij} = \sqrt[2]{\sum\limits_{k=1}^n {|x_{ik}-x_{jk}|^\lambda}}</script><h3 id="CityBlock-Distance公式"><a href="#CityBlock-Distance公式" class="headerlink" title="CityBlock Distance公式"></a>CityBlock Distance公式</h3><p>也就是Minkowski Distance公式λ=1的情况</p>
+<script type="math/tex; mode=display">d_{ij} = {\sum\limits_{k=1}^n {|x_{ik}-x_{jk}|}}</script><h3 id="向量表示法"><a href="#向量表示法" class="headerlink" title="向量表示法"></a>向量表示法</h3><script type="math/tex; mode=display">cos(\theta) = \frac{a·b}{|a||b|} = \frac{\sum_{k=1}^n x_{1k}*x_{2k}}{\sqrt[2]{\sum_{k=1}^n x_{1k}^2 \sum_{k=1}^n x_{2k}^2}}</script><h2 id="迭代终止条件："><a href="#迭代终止条件：" class="headerlink" title="迭代终止条件："></a>迭代终止条件：</h2><ol>
+<li>比较相邻的2轮迭代结果，在2轮过程中<strong>移动的非质心点的个数</strong>，设置移动非质心点占比全部点数的最小比例值，如果达到则算法终止</li>
+<li>为了防止k-means聚类过程长时间不收敛，设置<strong>最大迭代次数</strong>，如果达到最大迭代次数还没有达到上述条件，则也终止计算<br>3。 如果相邻2次迭代过程，<strong>质心没有发生变化</strong>，则算法终止，这是最强的终止约束条件。能够满足这种条件，几乎是不可能的，除非两次迭代过程中没有非质心点重新指派给到另一个不同的质心。</li>
+</ol>
+<h2 id="K-Means主要缺陷"><a href="#K-Means主要缺陷" class="headerlink" title="K-Means主要缺陷"></a>K-Means主要缺陷</h2><ul>
+<li><p><strong>K的选择。</strong></p>
+<ul>
+<li>K是事先给定的，这个K值的选定是非常难以估计的。很多时候，事先并不知道给定的数据集应该分成多少个类别才最合适。（<a href="http://en.wikipedia.org/wiki/Multispectral_pattern_recognition" target="_blank" rel="external">ISODATA</a>算法通过类的自动合并和分裂，得到较为合理的类型数目K）</li>
+</ul>
+</li>
+<li><p><strong>聚类中心的选择</strong>。</p>
+<ul>
+<li>K-Means算法需要用<strong>初始随机种子点</strong>选择初始聚类中心。这个随机种子点太重要，不同的随机种子点会有得到完全不同的结果。（<a href="http://en.wikipedia.org/wiki/K-means%2B%2B" target="_blank" rel="external">K-Means++算法</a>可以用来解决这个问题，其可以有效地选择初始点）</li>
+</ul>
+<p>​</p>
+</li>
+</ul>
+<h1 id="K-Means-算法"><a href="#K-Means-算法" class="headerlink" title="K-Means++算法"></a>K-Means++算法</h1><ol>
+<li>先从我们的数据库随机挑个随机点当“种子点”。</li>
+<li>对于每个点，我们都计算其和最近的一个“种子点”的距离D(x)并保存在一个数组里，然后把这些距离加起来得到Sum(D(x))。</li>
+<li>然后，再取一个随机值，用权重的方式来取计算下一个“种子点”。这个算法的实现是，先取一个能落在Sum(D(x))中的随机值Random，然后用Random -= D(x)，直到其&lt;=0，此时的点就是下一个“种子点”。</li>
+<li>重复第（2）和第（3）步直到所有的K个种子点都被选出来。</li>
+<li>进行K-Means算法。</li>
+</ol>
+<h1 id="k-means算法评价标准"><a href="#k-means算法评价标准" class="headerlink" title="k-means算法评价标准"></a>k-means算法评价标准</h1><p>聚类算法目标是使得同一个簇的差异很小，不同簇之间的数据差异最大化。</p>
+<p>一般采用误差平方和作为衡量的目标函数SSE，上面提到的目标函数f就是SSE也是误差平方和</p>
+<script type="math/tex; mode=display">SSE = \sum\limits_{i=1}^k \sum\limits_{x \in C_i} D(c_i,x)</script><p>其中$c_i$表示聚类的中心点，x为数据点，D(c,x)为距离公式，一般λ为2.</p>
+<script type="math/tex; mode=display">D(c,x) =d_{cx} = \sqrt[\lambda]{\sum\limits_{k=1}^n {|w_{ck}-w_{xk}|^\lambda}}</script><p>其中n为其维度，$w_{ck}$为c在第k维上的分量。</p>
+<p>$\lambda =2$时对SSE求偏导，</p>
+<script type="math/tex; mode=display">\frac{\partial } {\partial C_k}{SSE} = \frac{\partial } {\partial C_k}{\sum\limits_{i=1}^k \sum\limits_{x \in C_i} (c_i-x)^2}\\=\sum\limits_{i=1}^k \sum\limits_{x \in C_i} \frac{\partial}{\partial C_k}{(c_i-x)^2}\\=\sum\limits_{i=1}^k\sum\limits_{x\in C_i} 2(c_i-x) = 0</script><p>解上面方程得：</p>
+<script type="math/tex; mode=display">m_i*c_i=\sum\limits_{x \in C_i} x \Rightarrow c_i = \frac{1}{m_i}\sum\limits_{x \in C_i}x</script><p>从此推导我们可以明白为什么选择均值作为类簇的中心点，因为中心点为均值是，才能使得SSE最小。</p>
+<p>CSDN博客：<a href="http://blog.csdn.net/shine19930820/article/details/64907266" target="_blank" rel="external">http://blog.csdn.net/shine19930820/article/details/64907266</a></p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="算法分类"><a href="#算法分类" class="headerlink" title="算法分类"></a>算法分类</h2><p>​    机器学习算法按照<strong>学习方式</strong>分为<strong>监督学习、非监督学习、半监督学习、强化学习</strong></p>
+<p><strong>监督学习</strong>：从给定的训练数据集中学习出一个函数，当新的数据到来时，可以根据这个函数预测结果。训练集中的目标是由人标注的。</p>
+<p><strong>非监督式学习</strong>：与监督学习相比，训练集没有人为标注的结果。常见的非监督式学习算法有聚类。</p>
+<p><strong>半监督式学习</strong>：输入数据部分被标识，部分没有被标识，介于监督式学习与非监督式学习之间。常见的半监督式学习算法有支持向量机。</p>
+<p><strong>强化学习</strong>：在这种学习模式下，输入数据作为对模型的反馈，不像监督模型那样，输入数据仅仅是作为一个检查模型对错的方式，在强化学习下，输入数据直接反馈到模型，模型必须对此立刻作出调整。常见的强化学习算法有时间差学习。</p>
+<hr>
+<p>​    按照<strong>算法类似性</strong>分为决策树学习、回归、聚类、人工神经网络</p>
+<p><strong>决策树</strong>：根据数据的属性采用树状结构建立决策模型。决策树模型常常用来解决分类和回归问题。常见的算法包括 CART (Classification And Regression Tree)、ID3、C4.5、随机森林 (Random Forest) 等。</p>
+<p><strong>回归算法</strong>：试图采用对误差的衡量来探索变量之间的关系的一类算法。常见的回归算法包括最小二乘法 (Least Square)、逻辑回归 (Logistic Regression)、逐步式回归 (Stepwise Regression) 等。</p>
+<p><strong>聚类算法</strong>：通常按照中心点或者分层的方式对输入数据进行归并。所有的聚类算法都试图找到数据的内在结构，以便按照最大的共同点将数据进行归类。常见的聚类算法包括 K-Means 算法以及期望最大化算法 (Expectation Maximization) 等。</p>
+<p><strong>人工神经网络</strong>：模拟生物神经网络，是一类模式匹配算法。通常用于解决分类和回归问题。人工神经网络算法包括感知器神经网络 (Perceptron Neural Network) 、反向传递 (Back Propagation) 和<a href="http://lib.csdn.net/base/deeplearning" target="_blank" rel="external">深度学习</a>等。</p>
+<h2 id="生成方法和判别方法"><a href="#生成方法和判别方法" class="headerlink" title="生成方法和判别方法"></a>生成方法和判别方法</h2><p>监督学习方法又分生成方法（Generativeapproach）和判别方法（Discriminative approach），所学到的模型分别称为生成模型（GenerativeModel）和判别模型（Discriminative Model）。</p>
+<p><strong>判别方法：</strong> 由数据直接学习决策函数Y=f(X)或者条件概率分布P(Y|X)作为预测的模型，即判别模型。基本思想是有限样本条件下建立判别函数，不考虑样本的产生模型，直接研究预测模型。典型的判别模型包括<strong>k近邻，感知机，决策树，支持向量机等。</strong></p>
+<p><strong>生成方法：</strong> 由数据学习联合概率密度分布P(X,Y)，然后求出条件概率分布P(Y|X)作为预测的模型，即生成模型：P(Y|X)= P(X,Y)/ P(X)。基本思想是首先建立样本的联合概率概率密度模型P(X,Y)，然后再得到后验概率P(Y|X)，再利用它进行分类。如<strong>朴素贝叶斯和隐马尔科夫模型等。</strong></p>
+<p><strong>由生成模型可以得到判别模型，但由判别模型得不到生成模型。</strong></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>《统计学习方法》<br>《The Elements of Statistical Learning 》<br>《Machine Learning A Probabilistic Perspective》<br><a href="http://note.youdao.com/noteshare?id=a2e5bda9a0319920080a19a192177b96&amp;sub=wcp1438842603044242" target="_blank" rel="external">Top 10 algorithms in data mining</a></p>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang" title="打赏，支持一下">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()" title="关闭">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipayimg.jpg" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/wechatimg.jpg" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/01/03/3k-means/">『数据挖掘十大算法 』笔记三：K-means</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 AaronChou 的个人博客">AaronChou</a></p>
+        <p><span>发布时间:</span>2016年01月03日 - 15时30分</p>
+        <p><span>最后更新:</span>2017年03月24日 - 22时05分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/01/03/3k-means/" title="『数据挖掘十大算法 』笔记三：K-means">https://insanelife.github.io/2016/01/03/3k-means/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://insanelife.github.io/2016/01/03/3k-means/　　作者: AaronChou" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2016/01/04/4不平衡学习的方法 Learning from Imbalanced Data/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          不平衡学习的方法 Learning from Imbalanced Data
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/01/02/2SVM/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">『数据挖掘十大算法 』笔记二：SVM-支持向量机</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数据挖掘Top-10算法"><span class="toc-number">1.</span> <span class="toc-text">数据挖掘Top 10算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#K-means算法"><span class="toc-number">2.</span> <span class="toc-text">K-means算法:</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#算法流程"><span class="toc-number">2.1.</span> <span class="toc-text">算法流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#求中心点算法"><span class="toc-number">2.2.</span> <span class="toc-text">求中心点算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#距离公式"><span class="toc-number">2.3.</span> <span class="toc-text">距离公式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Minkowski-Distance公式"><span class="toc-number">2.3.1.</span> <span class="toc-text">Minkowski Distance公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Euclidean-Distance公式"><span class="toc-number">2.3.2.</span> <span class="toc-text">Euclidean Distance公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CityBlock-Distance公式"><span class="toc-number">2.3.3.</span> <span class="toc-text">CityBlock Distance公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#向量表示法"><span class="toc-number">2.3.4.</span> <span class="toc-text">向量表示法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代终止条件："><span class="toc-number">2.4.</span> <span class="toc-text">迭代终止条件：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#K-Means主要缺陷"><span class="toc-number">2.5.</span> <span class="toc-text">K-Means主要缺陷</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#K-Means-算法"><span class="toc-number">3.</span> <span class="toc-text">K-Means++算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#k-means算法评价标准"><span class="toc-number">4.</span> <span class="toc-text">k-means算法评价标准</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#附录"><span class="toc-number">5.</span> <span class="toc-text">附录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#算法分类"><span class="toc-number">5.1.</span> <span class="toc-text">算法分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成方法和判别方法"><span class="toc-number">5.2.</span> <span class="toc-text">生成方法和判别方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">5.3.</span> <span class="toc-text">参考资料</span></a></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/01/03/3k-means/" data-title="『数据挖掘十大算法 』笔记三：K-means" data-url="https://insanelife.github.io/2016/01/03/3k-means/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"null"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/01/04/4不平衡学习的方法 Learning from Imbalanced Data/" title="上一篇: 不平衡学习的方法 Learning from Imbalanced Data">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2016/01/02/2SVM/" title="下一篇: 『数据挖掘十大算法 』笔记二：SVM-支持向量机">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/31『 天池竞赛』O2O优惠券使用预测思路总结/">『 天池竞赛』O2O优惠券使用预测思路总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/05/5gbdt/">『机器学习算法笔记 』GBDT原理-Gradient Boosting Decision Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/04/4不平衡学习的方法 Learning from Imbalanced Data/">不平衡学习的方法 Learning from Imbalanced Data</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/03/3k-means/">『数据挖掘十大算法 』笔记三：K-means</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/02/2SVM/">『数据挖掘十大算法 』笔记二：SVM-支持向量机</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/01/01/1决策树/">『数据挖掘十大算法 』笔记一：决策树</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2017 AaronChou
+            </div>
+            <div class="footer-right">
+               <!--#//<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+				-->
+			</div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
